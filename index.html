@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>+52 Lições de Escola Dominical Infantil</title>
+    <meta name="description" content="52 lições de Escola Dominical Infantil prontas para aplicar e imprimir. Acesso vitalício com garantia de 7 dias.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.4);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .feature p {
+            color: #666;
+        }
+
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.recommended {
+            border-color: #22c55e;
+            border-width: 3px;
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #22c55e;
+            margin: 20px 0;
+        }
+
+        .price-old {
+            font-size: 0.8em;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .feature-list li {
+            list-style: none;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .bonus-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .bonuses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .bonus {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .bonus h4 {
+            margin: 15px 0 10px;
+            font-size: 0.95em;
+        }
+
+        .bonus p {
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .guarantee {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .guarantee h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #22c55e;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+
+            section h2 {
+                font-size: 1.5em;
+            }
+
+            .pricing-card.recommended {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>+52 Lições de Escola Dominical Infantil</h1>
+        <p>Prontas para Aplicar e Imprimir</p>
+        <p style="font-size: 1em; opacity: 0.8; margin-bottom: 30px;">Material bíblico visual, simples e organizado para professores e voluntários</p>
+        <a href="#planos" class="cta-button">Acessar Agora</a>
+    </header>
+
+    <section>
+        <h2>O que você vai receber</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>📚 Material Completo</h3>
+                <p>52 lições de Escola Dominical organizadas em PDF. Cada lição inclui versículo, dinâmica, atividade e oração.</p>
+            </div>
+            <div class="feature">
+                <h3>🖨️ Pronto para Usar</h3>
+                <p>Formato A4 pronto para impressão. Ideal para salas infantis, aulas bíblicas e ministério infantil.</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ Acesso Imediato</h3>
+                <p>Receba o material no seu e-mail após a compra. Disponível 24h com acesso vitalício.</p>
+            </div>
+            <div class="feature">
+                <h3>♾️ Impressão Ilimitada</h3>
+                <p>Imprima quantas vezes quiser. Use durante todo o ano com seus alunos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bonus-section">
+        <h2>+4 Bônus Exclusivos</h2>
+        <div class="bonuses">
+            <div class="bonus">
+                <h4>🎯 Bônus #1</h4>
+                <h4>+500 Atividades Bíblicas</h4>
+                <p><span class="price-old">R$ 39,90</span></p>
+                <p style="color: #22c55e; font-weight: bold;">Grátis</p>
+            </div>
+            <div class="bonus">
+                <h4>🎮 Bônus #2</h4>
+                <h4>+40 Dinâmicas e Brincadeiras</h4>
+                <p><span class="price-old">R$ 39,90</span></p>
+                <p style="color: #22c55e; font-weight: bold;">Grátis</p>
+            </div>
+            <div class="bonus">
+                <h4>✝️ Bônus #3</h4>
+                <h4>Kit de Versículos Ilustrados</h4>
+                <p><span class="price-old">R$ 39,90</span></p>
+                <p style="color: #22c55e; font-weight: bold;">Grátis</p>
+            </div>
+            <div class="bonus">
+                <h4>📅 Bônus #4</h4>
+                <h4>Calendário do Ministério</h4>
+                <p><span class="price-old">R$ 39,90</span></p>
+                <p style="color: #22c55e; font-weight: bold;">Grátis</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="planos">
+        <h2>Escolha a opção ideal para você</h2>
+        <div class="pricing">
+            <div class="pricing-card recommended">
+                <span style="background: #22c55e; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">RECOMENDADO</span>
+                <h3>Completo</h3>
+                <p>52 Lições + 4 Bônus</p>
+                <div class="price">
+                    <span class="price-old">R$ 97,00</span>
+                    R$ 19,90
+                </div>
+                <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">ou no Pix à vista</p>
+                <ul class="feature-list">
+                    <li>52 Lições de Escola Dominical</li>
+                    <li>+500 Atividades Bíblicas</li>
+                    <li>+40 Dinâmicas e Brincadeiras</li>
+                    <li>Kit de Versículos Ilustrados</li>
+                    <li>Calendário do Ministério</li>
+                    <li>Acesso Vitalício</li>
+                    <li>Impressão Ilimitada</li>
+                </ul>
+                <a href="https://pay.lowify.com.br/checkout.php?product_id=OdN2mO" class="cta-button" style="width: 100%; display: block; margin-top: 20px;">Quero o Completo</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Básico</h3>
+                <p>52 Lições</p>
+                <div class="price">
+                    <span class="price-old">R$ 47,00</span>
+                    R$ 9,90
+                </div>
+                <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">ou no Pix à vista</p>
+                <ul class="feature-list">
+                    <li>52 Lições de Escola Dominical</li>
+                    <li>Acesso Vitalício</li>
+                    <li>Impressão Ilimitada</li>
+                    <li>Acesso Imediato</li>
+                </ul>
+                <a href="https://pay.lowify.com.br/checkout.php?product_id=9yIPZy" class="cta-button" style="width: 100%; display: block; margin-top: 20px; background: white; color: #1e293b; border: 2px solid #1e293b;">Quero o Básico</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="guarantee">
+            <h3>✅ Garantia de 7 Dias</h3>
+            <p>Garantia incondicional de 7 dias. Se não gostar, devolvemos 100% do valor, sem burocracia.</p>
+        </div>
+
+        <h2>Por que escolher este material?</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>⏰ Economiza Tempo</h3>
+                <p>Nunca mais passe horas preparando aulas. Tudo já vem pronto para aplicar.</p>
+            </div>
+            <div class="feature">
+                <h3>📖 Conteúdo Bíblico</h3>
+                <p>Material organizado com versículos, dinâmicas, atividades e orações.</p>
+            </div>
+            <div class="feature">
+                <h3>👥 Para Todos</h3>
+                <p>Não precisa de experiência prévia no ministério infantil. É simples e funciona!</p>
+            </div>
+            <div class="feature">
+                <h3>💚 Crianças Envolvidas</h3>
+                <p>Com atividades práticas e dinâmicas que prendem a atenção das crianças.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bonus-section">
+        <h2>Perguntas Frequentes</h2>
+        <div style="max-width: 700px; margin: 0 auto;">
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">📧 Como vou receber o material?</h3>
+                <p>Logo após a confirmação do pagamento, você recebe o acesso no seu e-mail para baixar todo o material.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">💻 O material é físico ou digital?</h3>
+                <p>É 100% digital em PDF. Você baixa no seu computador e pode imprimir quantas vezes quiser.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">🖨️ Posso imprimir quantas vezes quiser?</h3>
+                <p>Sim! Impressão ilimitada. Use durante todo o ano ou compartilhe com outros professores da sua comunidade.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">👶 Para qual faixa etária serve?</h3>
+                <p>Material pensado para crianças de 2 a 12 anos. Adaptável para diferentes idades.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">⏱️ Preciso de experiência no ministério infantil?</h3>
+                <p>Não! O material é completo e pronto para usar, ideal para quem está começando ou tem pouca experiência.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">📱 Posso usar em celular, tablet ou computador?</h3>
+                <p>Sim! Os arquivos PDF funcionam em todos os dispositivos. Você pode visualizar e imprimir quando quiser.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">♾️ O acesso é vitalício?</h3>
+                <p>Sim! Uma vez que você compra, tem acesso para sempre. Sem assinatura mensal, sem renovações.</p>
+            </div>
+            <div style="background: white; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">🛡️ Tem garantia?</h3>
+                <p>Sim! Garantia incondicional de 7 dias. Se não gostar, devolvemos seu dinheiro, sem fazer perguntas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div style="text-align: center; background: #f0fdf4; padding: 40px; border-radius: 15px;">
+            <h2>Pronto para revolucionar suas aulas de Escola Dominical?</h2>
+            <p style="margin: 20px 0; font-size: 1.1em;">Acesso vitalício com garantia de 7 dias</p>
+            <a href="#planos" class="cta-button" style="font-size: 1.2em; padding: 18px 50px;">Acessar Agora</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Profa. Rayssa Andrade. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Material digital - Acesso vitalício com garantia de 7 dias</p>
+    </footer>
+</body>
+</html>
