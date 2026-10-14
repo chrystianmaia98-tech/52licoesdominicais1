@@ -993,9 +993,6 @@
         html { -webkit-text-size-adjust: 100%; }
         a, button, summary { -webkit-tap-highlight-color: transparent; }
 
-        /* Barra fixa de compra (só celular) */
-        .sticky-buy { display: none; }
-
         @media (max-width: 640px) {
             body { font-size: 16px; }
             section { padding: 44px 18px !important; }
@@ -1056,17 +1053,7 @@
             details summary { font-size: 15px; gap: 12px; line-height: 1.35; }
             details p { font-size: 15px; }
             .cta-final p { font-size: 16px; }
-            footer { padding-bottom: 96px; }
-
-            /* Barra fixa de compra */
-            .sticky-buy { display: flex; align-items: center; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, 0.97); box-shadow: 0 -6px 20px rgba(4, 44, 67, 0.15); transform: translateY(110%); transition: transform .3s ease; }
-            .sticky-buy.show { transform: translateY(0); }
-            .sticky-buy-price { line-height: 1.15; white-space: nowrap; }
-            .sticky-buy-price small { display: block; font-size: 11px; color: var(--text-muted); }
-            .sticky-buy-price b { font-size: 20px; color: var(--success); }
-            .sticky-buy a { flex: 1; text-align: center; background: linear-gradient(180deg, #13c45f, #03a14a); color: #fff; font-weight: 800; font-size: 15px; text-transform: uppercase; text-decoration: none; padding: 14px 10px; border-radius: 12px; box-shadow: 0 6px 16px rgba(3, 161, 74, 0.35); }
         }
-        @media (prefers-reduced-motion: reduce) { .sticky-buy { transition: none; } }
     </style>
 </head>
 <body>
@@ -1325,29 +1312,6 @@
         <p style="margin-top:10px;"><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · <a href="#">Contato</a></p>
         <p class="aviso">Este site não faz parte do Facebook ou da Meta Platforms, Inc. Os resultados podem variar de pessoa para pessoa.</p>
     </footer>
-
-    <!-- Barra fixa de compra (celular) -->
-    <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
-        <div class="sticky-buy-price"><small>Kit completo por</small><b>R$ 19,90</b></div>
-        <a href="#planos" tabindex="-1">Quero as lições</a>
-    </div>
-    <script>
-    (function () {
-        var bar = document.getElementById('sticky-buy');
-        var hero = document.querySelector('.hero');
-        var planos = document.getElementById('planos');
-        if (!bar || !hero || !planos || !('IntersectionObserver' in window)) return;
-        var heroVisible = true, planosVisible = false;
-        function update() {
-            var show = !heroVisible && !planosVisible;
-            bar.classList.toggle('show', show);
-            bar.setAttribute('aria-hidden', show ? 'false' : 'true');
-            bar.querySelector('a').tabIndex = show ? 0 : -1;
-        }
-        new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); }).observe(hero);
-        new IntersectionObserver(function (e) { planosVisible = e[0].isIntersecting; update(); }).observe(planos);
-    })();
-    </script>
 
     <!-- Back redirect: ao tentar voltar/sair, abre o checkout com desconto -->
     <script>
