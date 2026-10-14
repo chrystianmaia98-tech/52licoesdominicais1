@@ -984,6 +984,90 @@
         async
         defer
     ></script>
+    <meta name="theme-color" content="#005c5c">
+    <link rel="preconnect" href="https://player.vimeo.com">
+    <link rel="preconnect" href="https://i.vimeocdn.com">
+    <link rel="preconnect" href="https://f.vimeocdn.com">
+    <style>
+        /* ===== Otimização para celular ===== */
+        html { -webkit-text-size-adjust: 100%; }
+        a, button, summary { -webkit-tap-highlight-color: transparent; }
+
+        /* Barra fixa de compra (só celular) */
+        .sticky-buy { display: none; }
+
+        @media (max-width: 640px) {
+            body { font-size: 16px; }
+            section { padding: 44px 18px !important; }
+            section h2 { font-size: 26px !important; line-height: 1.2; margin-bottom: 20px !important; }
+            .section-subtitle { font-size: 16px; margin-bottom: 24px !important; }
+
+            /* Topo: vídeo e título mais compactos */
+            .banner { padding: 8px 12px; font-size: 11px; }
+            .hero { padding: 28px 18px 40px !important; }
+            .hero-badge { margin-bottom: 12px; padding: 8px 12px; font-size: 11px; }
+            .hero h1 { font-size: 30px !important; margin: 16px 0 26px !important; }
+            .hero p { font-size: 16px; margin: 14px auto; }
+            .hero-image { max-width: 250px !important; margin: 22px auto !important; padding: 6px; }
+            .hero-features { grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px auto; }
+            .hero-feature { padding: 10px 8px; font-size: 12.5px; gap: 8px; line-height: 1.3; }
+            .hero-feature:last-child { grid-column: 1 / -1; justify-content: center; }
+            .hero-feature-icon { width: 20px; height: 20px; font-size: 11px; }
+            .cta-pulo { display: block !important; width: 100%; padding: 18px 16px !important; font-size: 17px !important; }
+
+            /* Dor */
+            #dor img { aspect-ratio: 16 / 10 !important; margin-bottom: 20px !important; }
+            #dor p { font-size: 16px !important; }
+            #dor p:last-child { font-size: 19px !important; }
+
+            /* Imagine: fotos em 2 colunas */
+            #solucao [style*="grid-template-columns"] { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+            #solucao figcaption { font-size: 12.5px !important; line-height: 1.3; margin-top: 8px !important; }
+            #solucao img { border-radius: 12px !important; aspect-ratio: 1 / 1 !important; }
+
+            /* Por dentro */
+            .stats { margin-top: 24px; }
+            .stat b { font-size: 24px; }
+
+            /* Depoimentos */
+            .depo-rating { margin-bottom: 20px; font-size: 14px; }
+            .depo-section .cta-button { margin-top: 28px; }
+            .depo-grid { margin: 0 -18px !important; padding: 16px 18px 24px !important; }
+            html, body { overflow-x: hidden; }
+
+            /* Planos */
+            .pricing-grid { gap: 28px; grid-template-columns: 1fr !important; }
+            .pricing-card { padding: 28px 18px 22px !important; }
+            .pricing-image img { max-width: 230px; }
+            .pricing-card h3 { font-size: 24px; margin-bottom: 8px; }
+            .pricing-list { margin: 12px 0; }
+            .pricing-list li { padding: 7px 0; font-size: 14.5px; line-height: 1.4; }
+            .pricing-price { font-size: 44px; margin: 6px 0; }
+            .pricing-card [style*="margin: 24px 0"] { margin: 14px 0 !important; }
+            .pricing-card:not(.recommended) .pricing-image img { max-width: 170px; }
+
+            /* Botões grandes e fáceis de tocar */
+            .cta-button { display: block; width: 100%; text-align: center; padding: 18px 16px; font-size: 16px; min-height: 56px; }
+
+            /* Garantia, FAQ e final */
+            .guarantee { padding: 24px 18px; gap: 16px; margin: 0 auto; }
+            .guarantee-selo { width: 120px; height: 120px; }
+            details { padding: 16px; margin-bottom: 10px; }
+            details summary { font-size: 15px; gap: 12px; line-height: 1.35; }
+            details p { font-size: 15px; }
+            .cta-final p { font-size: 16px; }
+            footer { padding-bottom: 96px; }
+
+            /* Barra fixa de compra */
+            .sticky-buy { display: flex; align-items: center; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, 0.97); box-shadow: 0 -6px 20px rgba(4, 44, 67, 0.15); transform: translateY(110%); transition: transform .3s ease; }
+            .sticky-buy.show { transform: translateY(0); }
+            .sticky-buy-price { line-height: 1.15; white-space: nowrap; }
+            .sticky-buy-price small { display: block; font-size: 11px; color: var(--text-muted); }
+            .sticky-buy-price b { font-size: 20px; color: var(--success); }
+            .sticky-buy a { flex: 1; text-align: center; background: linear-gradient(180deg, #13c45f, #03a14a); color: #fff; font-weight: 800; font-size: 15px; text-transform: uppercase; text-decoration: none; padding: 14px 10px; border-radius: 12px; box-shadow: 0 6px 16px rgba(3, 161, 74, 0.35); }
+        }
+        @media (prefers-reduced-motion: reduce) { .sticky-buy { transition: none; } }
+    </style>
 </head>
 <body>
     <!-- Banner -->
@@ -1054,20 +1138,6 @@
 
         </div>
     <div style="margin-top:8px;text-align:center;"><style>@keyframes ctaPulo{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45)}50%{transform:translateY(-6px) scale(1.05);box-shadow:0 0 0 8px rgba(255,163,26,0.18),0 16px 32px rgba(243,130,29,0.6)}}.cta-pulo{animation:ctaPulo 1.3s ease-in-out infinite}.cta-pulo:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.cta-pulo{animation:none}}</style><a href="#planos" class="cta-pulo" style="display:inline-block;background:linear-gradient(180deg,#ffa31a,#ea7412);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,0.3);font-weight:800;font-size:clamp(16px,4.5vw,20px);text-transform:uppercase;text-decoration:none;padding:18px 32px;border-radius:12px;box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45);max-width:100%;">QUERO BAIXAR AS 52 LIÇÕES AGORA!</a><p style="margin:12px auto 0;font-size:14px;color:#fff8ea;">Receba o acesso no seu e-mail e imprima quando quiser.</p></div></section><!-- Dor --><section id="dor"><div style="max-width:720px;margin:0 auto;"><h2 style="margin-bottom:24px;">Por mais que você tente, o celular acaba sempre vencendo?</h2><p style="font-size:18px;text-align:center;margin-bottom:16px;">Chega o final de semana. Você está cansado, mas quer muito tirar um tempo para ensinar sobre Jesus. O problema? Planejar uma atividade criativa do zero exige uma energia que você simplesmente não tem.</p><p style="font-size:18px;text-align:center;margin-bottom:32px;">Aí, o celular vira a saída mais rápida para ter um pouco de silêncio em casa... <strong>mas o coração dói de culpa.</strong></p><!-- ESPACO PARA FOTOS: troque cada bloco Foto por uma imagem --><img src="/dor-celular.webp" alt="Criança absorvida pela tela do celular no sofá" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;margin-bottom:32px;"><div style="display:grid;gap:12px;margin-bottom:32px;"><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Choro e irritação na hora de pedir para desligar a tela;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Falta de foco total quando você tenta contar uma história bíblica;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>A culpa do domingo à noite, sentindo que a internet está ensinando mais do que você.</span></div></div><p style="font-size:18px;text-align:center;margin-bottom:20px;">Se você balançou a cabeça dizendo "sim", respire fundo. <strong>A culpa não é sua.</strong> Lutar contra os algoritmos da internet é uma briga desleal.</p><p style="font-size:21px;font-weight:800;line-height:1.4;text-align:center;color:var(--brand);">Mas e se você tivesse um atalho para resgatar a atenção das crianças e criar um momento lindo com Deus... sem precisar gastar um único minuto planejando?</p></div></section><!-- Solucao --><section id="solucao" style="background:#ffffff;"><div style="max-width:880px;margin:0 auto;"><h2 style="margin-bottom:16px;">Imagine esse momento na sua casa</h2><p style="font-size:18px;text-align:center;max-width:640px;margin:0 auto 36px;">Crianças concentradas, a Bíblia aberta na mesa e a família reunida em volta da Palavra. Sem briga por tela e sem horas de preparo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;"><figure style="margin:0;"><img src="/sol-familia.webp" alt="Pais e filho colorindo juntos uma atividade bíblica" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Momentos em família ao redor da Palavra</figcaption></figure><figure style="margin:0;"><img src="/sol-kit.webp" alt="Lições impressas e atividades bíblicas sobre a mesa" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">52 lições completas + atividades para imprimir</figcaption></figure><figure style="margin:0;"><img src="/sol-licao.webp" alt="Lição de Daniel na cova dos leões aberta com atividades" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Cada lição: história, versículo, atividades e reflexão</figcaption></figure><figure style="margin:0;"><img src="/sol-criancas.webp" alt="Meninos fazendo atividades bíblicas e sorrindo" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Crianças concentradas, aprendendo e se divertindo</figcaption></figure></div></div></section>
-
-    <!-- NOVO · Mecanismo -->
-    <section >
-        <p style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);margin-bottom:16px;">Por que funciona</p>
-        <h2 style="margin-bottom:16px;">O Método Lição em 4 Tempos</h2>
-        <p class="section-subtitle" style="max-width:680px;margin:0 auto 40px;">Não é um monte de atividade solta da internet. Toda lição segue o mesmo roteiro, pensado para o tempo de atenção da criança: ela ouve, entende, faz com as mãos e leva a Palavra para o coração.</p>
-        <div class="metodo-grid">
-            <div class="metodo-card"><div class="metodo-num">1</div><h3>📖 História</h3><p>A narrativa bíblica contada de forma simples, no ritmo da criança.</p></div>
-            <div class="metodo-card"><div class="metodo-num">2</div><h3>✨ Versículo</h3><p>Um versículo-chave curto e ilustrado para memorizar.</p></div>
-            <div class="metodo-card"><div class="metodo-num">3</div><h3>✂️ Atividade</h3><p>Colorir, recortar e montar: a criança aprende fazendo e larga a tela.</p></div>
-            <div class="metodo-card"><div class="metodo-num">4</div><h3>🙏 Oração</h3><p>Reflexão e oração para fechar a aula com propósito.</p></div>
-        </div>
-        <p style="text-align:center;font-size:18px;font-weight:700;margin-top:36px;">Você só imprime e segue o roteiro. A aula está pronta em 5 minutos.</p>
-    </section>
 
     <!-- NOVO · Prova -->
     <section class="alt-bg">
@@ -1255,5 +1325,64 @@
         <p style="margin-top:10px;"><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · <a href="#">Contato</a></p>
         <p class="aviso">Este site não faz parte do Facebook ou da Meta Platforms, Inc. Os resultados podem variar de pessoa para pessoa.</p>
     </footer>
+
+    <!-- Barra fixa de compra (celular) -->
+    <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
+        <div class="sticky-buy-price"><small>Kit completo por</small><b>R$ 19,90</b></div>
+        <a href="#planos" tabindex="-1">Quero as lições</a>
+    </div>
+    <script>
+    (function () {
+        var bar = document.getElementById('sticky-buy');
+        var hero = document.querySelector('.hero');
+        var planos = document.getElementById('planos');
+        if (!bar || !hero || !planos || !('IntersectionObserver' in window)) return;
+        var heroVisible = true, planosVisible = false;
+        function update() {
+            var show = !heroVisible && !planosVisible;
+            bar.classList.toggle('show', show);
+            bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+            bar.querySelector('a').tabIndex = show ? 0 : -1;
+        }
+        new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); }).observe(hero);
+        new IntersectionObserver(function (e) { planosVisible = e[0].isIntersecting; update(); }).observe(planos);
+    })();
+    </script>
+
+    <!-- Back redirect: ao tentar voltar/sair, abre o checkout com desconto -->
+    <script>
+    (function () {
+        var CHECKOUT_DESCONTO = 'https://pay.lowify.com.br/checkout?product_id=rMcHw7';
+
+        // Leva junto os parâmetros UTM da visita para não perder o rastreamento
+        var qs = location.search.replace(/^\?/, '');
+        var destino = CHECKOUT_DESCONTO + (qs ? '&' + qs : '');
+
+        // Links internos (#planos) rolam a página sem criar entrada no histórico
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[href^="#"]');
+            if (!a) return;
+            var alvo = document.querySelector(a.getAttribute('href'));
+            if (!alvo) return;
+            e.preventDefault();
+            alvo.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // O navegador só respeita a entrada extra no histórico depois de um toque/clique
+        var armado = false;
+        function armar() {
+            if (armado) return;
+            armado = true;
+            history.pushState({ backRedirect: true }, '', location.href);
+        }
+        ['pointerdown', 'touchend', 'keydown', 'click'].forEach(function (ev) {
+            window.addEventListener(ev, armar, { once: true, passive: true });
+        });
+
+        window.addEventListener('popstate', function () {
+            if (armado) location.replace(destino);
+        });
+    })();
+    </script>
 </body>
 </html>
