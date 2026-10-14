@@ -989,6 +989,35 @@
     <link rel="preconnect" href="https://i.vimeocdn.com">
     <link rel="preconnect" href="https://f.vimeocdn.com">
     <style>
+        /* ===== Estrutura nova ===== */
+        .kicker { text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--brand); margin-bottom: 14px; }
+
+        /* Topo: mockup do produto */
+        .hero-mockup { max-width: 520px; margin: 32px auto 8px; }
+        .hero-mockup img { width: 100%; height: auto; display: block; border-radius: 22px; box-shadow: 0 24px 50px rgba(0, 0, 0, .3); border: 4px solid rgba(255, 248, 234, .15); }
+
+        /* Carrossel "O que você vai receber" */
+        .carrossel { position: relative; max-width: 1000px; margin: 0 auto; }
+        .car-trilho { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 6px 4px 18px; scrollbar-width: none; outline: none; }
+        .car-trilho::-webkit-scrollbar { display: none; }
+        .car-item { flex: 0 0 calc((100% - 36px) / 3); scroll-snap-align: start; margin: 0; }
+        .car-item img { width: 100%; height: auto; display: block; border-radius: 16px; background: #fff; box-shadow: 0 10px 26px rgba(4, 44, 67, .12); }
+        .car-item figcaption { margin-top: 12px; text-align: center; font-weight: 700; font-size: 15px; }
+        .car-seta { position: absolute; top: 42%; transform: translateY(-50%); z-index: 2; width: 46px; height: 46px; border-radius: 50%; border: 0; background: #fff; color: var(--text); font-size: 30px; line-height: 1; cursor: pointer; box-shadow: 0 6px 18px rgba(4, 44, 67, .2); display: flex; align-items: center; justify-content: center; padding-bottom: 4px; }
+        .car-prev { left: -14px; }
+        .car-next { right: -14px; }
+        .car-seta[disabled] { opacity: .35; cursor: default; }
+        .car-dots { display: flex; justify-content: center; gap: 8px; margin-top: 6px; }
+        .car-dots span { width: 8px; height: 8px; border-radius: 999px; background: rgba(4, 44, 67, .2); transition: all .25s; }
+        .car-dots span.ativo { width: 26px; background: var(--brand); }
+        .car-dica { text-align: center; font-size: 14px; font-weight: 600; color: var(--brand); margin-top: 10px; }
+
+        /* Bônus: total */
+        .bonus-total { text-align: center; margin-top: 36px; }
+        .bonus-total p { font-size: 18px; }
+        .bonus-total s { color: #e5484d; }
+        .bonus-total b { color: var(--success); }
+
         /* ===== Otimização para celular ===== */
         html { -webkit-text-size-adjust: 100%; }
         a, button, summary { -webkit-tap-highlight-color: transparent; }
@@ -1022,6 +1051,30 @@
             #solucao figcaption { font-size: 12.5px !important; line-height: 1.3; margin-top: 8px !important; }
             #solucao img { border-radius: 12px !important; aspect-ratio: 1 / 1 !important; }
 
+            /* Topo: mockup */
+            .hero-mockup { margin: 22px auto 4px; }
+            .hero-mockup img { border-radius: 16px; }
+
+            /* Carrossel no celular: 1 página por vez, com a ponta da próxima */
+            .car-trilho { gap: 12px; margin: 0 -18px; padding: 6px 18px 16px; scroll-padding: 0 18px; }
+            .car-item { flex: 0 0 82%; }
+            .car-seta { width: 38px; height: 38px; font-size: 26px; background: rgba(255,255,255,.95); }
+            .car-prev { left: -6px; }
+            .car-next { right: -6px; }
+
+            /* Bônus em 2 colunas */
+            .bonus-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+            .bonus-content { padding: 12px; }
+            .bonus-card h3 { font-size: 14px; line-height: 1.3; margin-bottom: 6px; }
+            .bonus-label { font-size: 10px; margin-bottom: 4px; }
+            .bonus-price-new { margin-left: 4px; font-size: 14px; }
+            .bonus-total p { font-size: 16px; }
+
+            /* Bio */
+            .author-section { padding: 22px 18px; gap: 18px; }
+            .author-image { max-width: 220px !important; }
+            .author-content { text-align: center; }
+
             /* Por dentro */
             .stats { margin-top: 24px; }
             .stat b { font-size: 24px; }
@@ -1053,6 +1106,66 @@
             details summary { font-size: 15px; gap: 12px; line-height: 1.35; }
             details p { font-size: 15px; }
             .cta-final p { font-size: 16px; }
+        }
+    </style>
+    <style>
+        /* ===== Contraste e legibilidade ===== */
+        :root { --text-muted: #3b5263; }
+        .hero p, .hero-cta-text, .hero-feature, .cta-final p, .selo { color: #ffffff !important; }
+        .hero p, .cta-final p { font-weight: 500; text-shadow: 0 1px 2px rgba(0, 0, 0, .28); }
+        footer, footer a { color: #ffffff; }
+        footer .aviso { opacity: 1; color: rgba(255, 255, 255, .92); }
+        .pricing-list li.sem { color: #5c6a74; }
+        .depo-rating { color: var(--text); font-weight: 600; }
+        .car-dica { color: var(--brand); }
+
+        /* Mockup no topo (junto da VSL) */
+        .hero .hero-mockup { max-width: 460px; margin: 8px auto 4px; }
+
+        /* Mecanismo: comparativo do zero x lições prontas */
+        .comparativo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; text-align: left; }
+        .comp-col { border-radius: 20px; padding: 24px; }
+        .comp-col h3 { font-size: 19px; margin-bottom: 14px; }
+        .comp-col ul { list-style: none; display: grid; gap: 10px; }
+        .comp-col li { display: flex; gap: 10px; font-size: 16px; line-height: 1.4; }
+        .comp-antes { background: #fff5f5; border: 1px solid #f5d0d0; }
+        .comp-antes li::before { content: "✕"; color: #e5484d; font-weight: 800; }
+        .comp-depois { background: #effaf4; border: 1px solid #bfe8cf; }
+        .comp-depois li::before { content: "✓"; color: var(--success); font-weight: 800; }
+
+        /* Bônus: descrição curta */
+        .bonus-sub { max-width: 640px; margin: 0 auto 36px !important; }
+        .bonus-sub s { color: #e5484d; }
+        .bonus-sub b { color: var(--success); }
+        .bonus-desc { font-size: 14px; color: var(--text-muted); line-height: 1.45; margin: -4px 0 8px; }
+
+        /* Depoimentos em carrossel */
+        .carrossel-depo .car-trilho { gap: 28px; padding: 16px 12px 28px; }
+        .carrossel-depo .car-item { flex: 0 0 calc((100% - 56px) / 3); scroll-snap-align: start; }
+        .carrossel-depo .depo-card, .carrossel-depo .depo-card:nth-child(odd), .carrossel-depo .depo-card:nth-child(even) { transform: none; }
+        .carrossel-depo .depo-card:hover { transform: translateY(-4px); }
+        .carrossel-depo .car-seta { top: 46%; }
+        .carrossel.sem-rolagem .car-seta, .carrossel.sem-rolagem .car-dots, .carrossel.sem-rolagem .car-dica { display: none; }
+
+        /* Bônus em carrossel */
+        .carrossel-bonus .car-trilho { gap: 24px; padding: 10px 6px 24px; }
+        .carrossel-bonus .car-item { flex: 0 0 calc((100% - 48px) / 3); scroll-snap-align: start; }
+        .carrossel-bonus .bonus-card:hover { transform: translateY(-4px); }
+        .carrossel-bonus .car-seta { top: 38%; }
+
+        @media (max-width: 640px) {
+            .comparativo { grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+            .comp-col { padding: 18px; }
+            .comp-col li { font-size: 15px; }
+            .hero .hero-mockup { margin: 4px auto 0; }
+            .carrossel-depo .car-trilho { gap: 16px; margin: 0 -18px; padding: 16px 18px 24px; scroll-padding: 0 18px; }
+            .carrossel-depo .car-item { flex: 0 0 76%; }
+            .carrossel-bonus .car-trilho { gap: 14px; margin: 0 -18px; padding: 10px 18px 20px; scroll-padding: 0 18px; }
+            .carrossel-bonus .car-item { flex: 0 0 78%; }
+            .carrossel-bonus .bonus-card h3 { font-size: 17px; }
+            .carrossel-bonus .bonus-desc { font-size: 14px; }
+            .carrossel-bonus .bonus-label { font-size: 11px; }
+            .bonus-desc { font-size: 12.5px; margin: -2px 0 6px; }
         }
     </style>
 </head>
@@ -1124,19 +1237,27 @@
             </div>
 
         </div>
-    <div style="margin-top:8px;text-align:center;"><style>@keyframes ctaPulo{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45)}50%{transform:translateY(-6px) scale(1.05);box-shadow:0 0 0 8px rgba(255,163,26,0.18),0 16px 32px rgba(243,130,29,0.6)}}.cta-pulo{animation:ctaPulo 1.3s ease-in-out infinite}.cta-pulo:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.cta-pulo{animation:none}}</style><a href="#planos" class="cta-pulo" style="display:inline-block;background:linear-gradient(180deg,#ffa31a,#ea7412);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,0.3);font-weight:800;font-size:clamp(16px,4.5vw,20px);text-transform:uppercase;text-decoration:none;padding:18px 32px;border-radius:12px;box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45);max-width:100%;">QUERO BAIXAR AS 52 LIÇÕES AGORA!</a><p style="margin:12px auto 0;font-size:14px;color:#fff8ea;">Receba o acesso no seu e-mail e imprima quando quiser.</p></div></section><!-- Dor --><section id="dor"><div style="max-width:720px;margin:0 auto;"><h2 style="margin-bottom:24px;">Por mais que você tente, o celular acaba sempre vencendo?</h2><p style="font-size:18px;text-align:center;margin-bottom:16px;">Chega o final de semana. Você está cansado, mas quer muito tirar um tempo para ensinar sobre Jesus. O problema? Planejar uma atividade criativa do zero exige uma energia que você simplesmente não tem.</p><p style="font-size:18px;text-align:center;margin-bottom:32px;">Aí, o celular vira a saída mais rápida para ter um pouco de silêncio em casa... <strong>mas o coração dói de culpa.</strong></p><!-- ESPACO PARA FOTOS: troque cada bloco Foto por uma imagem --><img src="/dor-celular.webp" alt="Criança absorvida pela tela do celular no sofá" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;margin-bottom:32px;"><div style="display:grid;gap:12px;margin-bottom:32px;"><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Choro e irritação na hora de pedir para desligar a tela;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Falta de foco total quando você tenta contar uma história bíblica;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>A culpa do domingo à noite, sentindo que a internet está ensinando mais do que você.</span></div></div><p style="font-size:18px;text-align:center;margin-bottom:20px;">Se você balançou a cabeça dizendo "sim", respire fundo. <strong>A culpa não é sua.</strong> Lutar contra os algoritmos da internet é uma briga desleal.</p><p style="font-size:21px;font-weight:800;line-height:1.4;text-align:center;color:var(--brand);">Mas e se você tivesse um atalho para resgatar a atenção das crianças e criar um momento lindo com Deus... sem precisar gastar um único minuto planejando?</p></div></section><!-- Solucao --><section id="solucao" style="background:#ffffff;"><div style="max-width:880px;margin:0 auto;"><h2 style="margin-bottom:16px;">Imagine esse momento na sua casa</h2><p style="font-size:18px;text-align:center;max-width:640px;margin:0 auto 36px;">Crianças concentradas, a Bíblia aberta na mesa e a família reunida em volta da Palavra. Sem briga por tela e sem horas de preparo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;"><figure style="margin:0;"><img src="/sol-familia.webp" alt="Pais e filho colorindo juntos uma atividade bíblica" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Momentos em família ao redor da Palavra</figcaption></figure><figure style="margin:0;"><img src="/sol-kit.webp" alt="Lições impressas e atividades bíblicas sobre a mesa" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">52 lições completas + atividades para imprimir</figcaption></figure><figure style="margin:0;"><img src="/sol-licao.webp" alt="Lição de Daniel na cova dos leões aberta com atividades" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Cada lição: história, versículo, atividades e reflexão</figcaption></figure><figure style="margin:0;"><img src="/sol-criancas.webp" alt="Meninos fazendo atividades bíblicas e sorrindo" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Crianças concentradas, aprendendo e se divertindo</figcaption></figure></div></div></section>
+    <div style="margin-top:8px;text-align:center;"><style>@keyframes ctaPulo{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45)}50%{transform:translateY(-6px) scale(1.05);box-shadow:0 0 0 8px rgba(255,163,26,0.18),0 16px 32px rgba(243,130,29,0.6)}}.cta-pulo{animation:ctaPulo 1.3s ease-in-out infinite}.cta-pulo:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.cta-pulo{animation:none}}</style><a href="#planos" class="cta-pulo" style="display:inline-block;background:linear-gradient(180deg,#ffa31a,#ea7412);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,0.3);font-weight:800;font-size:clamp(16px,4.5vw,20px);text-transform:uppercase;text-decoration:none;padding:18px 32px;border-radius:12px;box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45);max-width:100%;">QUERO BAIXAR AS 52 LIÇÕES AGORA!</a><p style="margin:12px auto 0;font-size:14px;color:#fff8ea;">Receba o acesso no seu e-mail e imprima quando quiser.</p></div></section><!-- Dor --><section id="dor"><div style="max-width:720px;margin:0 auto;"><h2 style="margin-bottom:24px;">Por mais que você tente, o celular acaba sempre vencendo?</h2><p style="font-size:18px;text-align:center;margin-bottom:16px;">Chega o final de semana. Você está cansado, mas quer muito tirar um tempo para ensinar sobre Jesus. O problema? Planejar uma atividade criativa do zero exige uma energia que você simplesmente não tem.</p><p style="font-size:18px;text-align:center;margin-bottom:32px;">Aí, o celular vira a saída mais rápida para ter um pouco de silêncio em casa... <strong>mas o coração dói de culpa.</strong></p><!-- ESPACO PARA FOTOS: troque cada bloco Foto por uma imagem --><img src="/dor-celular.webp" alt="Criança absorvida pela tela do celular no sofá" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;margin-bottom:32px;"><div style="display:grid;gap:12px;margin-bottom:32px;"><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Choro e irritação na hora de pedir para desligar a tela;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Falta de foco total quando você tenta contar uma história bíblica;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>A culpa do domingo à noite, sentindo que a internet está ensinando mais do que você.</span></div></div><p style="font-size:18px;text-align:center;margin-bottom:20px;">Se você balançou a cabeça dizendo "sim", respire fundo. <strong>A culpa não é sua.</strong> Lutar contra os algoritmos da internet é uma briga desleal.</p><p style="font-size:21px;font-weight:800;line-height:1.4;text-align:center;color:var(--brand);">Mas e se você tivesse um atalho para resgatar a atenção das crianças e criar um momento lindo com Deus... sem precisar gastar um único minuto planejando?</p></div></section><!-- Solucao --><section id="solucao" style="background:#ffffff;"><div style="max-width:880px;margin:0 auto;"><h2 style="margin-bottom:16px;">Imagine esse momento na sua casa</h2><p style="font-size:18px;text-align:center;max-width:640px;margin:0 auto 36px;">Crianças concentradas, a Bíblia aberta na mesa e a família reunida em volta da Palavra. Sem briga por tela e sem horas de preparo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;"><figure style="margin:0;"><img src="/sol-familia.webp" alt="Pais e filho colorindo juntos uma atividade bíblica" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Momentos em família ao redor da Palavra</figcaption></figure><figure style="margin:0;"><img src="/sol-kit.webp" alt="Lições impressas e atividades bíblicas sobre a mesa" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">52 lições completas + atividades para imprimir</figcaption></figure><figure style="margin:0;"><img src="/sol-licao.webp" alt="Lição de Daniel na cova dos leões aberta com atividades" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Cada lição: história, versículo, atividades e reflexão</figcaption></figure><figure style="margin:0;"><img src="/sol-criancas.webp" alt="Meninos fazendo atividades bíblicas e sorrindo" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Crianças concentradas, aprendendo e se divertindo</figcaption></figure></div>
+        </div></section>
 
-    <!-- NOVO · Prova -->
-    <section class="alt-bg">
+    <!-- 3 · O que você vai receber (carrossel) -->
+    <section class="alt-bg receber">
+        <p class="kicker">O que você vai receber</p>
         <h2 style="margin-bottom:16px;">Veja por dentro do material</h2>
-        <p class="section-subtitle" style="margin:0 auto 36px;">Assim são as páginas que você vai imprimir.</p>
-        <div class="dentro-grid">
-            <figure class="dentro-item"><img src="/dentro-capa.jpg" alt="Capa da Lição 1: Deus me criou com um propósito" loading="lazy"><figcaption>Capa de cada lição</figcaption></figure>
-            <figure class="dentro-item"><img src="/dentro-historia.jpg" alt="Página da história bíblica: A Criação do Mundo" loading="lazy"><figcaption>História bíblica ilustrada</figcaption></figure>
-            <figure class="dentro-item"><img src="/dentro-versiculo.jpg" alt="Versículo para memorizar: Salmo 139:14" loading="lazy"><figcaption>Versículo para memorizar</figcaption></figure>
-            <figure class="dentro-item"><img src="/dentro-colorir.jpg" alt="Atividade para colorir: Jesus ama as crianças" loading="lazy"><figcaption>Atividade para colorir</figcaption></figure>
-            <figure class="dentro-item"><img src="/dentro-recortar.jpg" alt="Atividade de recortar: animais da arca de Noé" loading="lazy"><figcaption>Atividade de recortar</figcaption></figure>
-            <figure class="dentro-item"><img src="/dentro-sumario.jpg" alt="Sumário das 52 lições" loading="lazy"><figcaption>Sumário das 52 lições</figcaption></figure>
+        <p class="section-subtitle" style="margin:0 auto 32px;">52 lições completas, prontas para imprimir. Arraste para ver as páginas.</p>
+        <div class="carrossel" id="carrossel-receber">
+            <button class="car-seta car-prev" type="button" aria-label="Página anterior">‹</button>
+            <div class="car-trilho" tabindex="0" aria-label="Páginas do material">
+                <figure class="car-item"><img src="/dentro-capa.jpg" alt="Capa da Lição 1: Deus me criou com um propósito" loading="lazy"><figcaption>📘 Capa de cada lição</figcaption></figure>
+                <figure class="car-item"><img src="/dentro-historia.jpg" alt="Página da história bíblica: A Criação do Mundo" loading="lazy"><figcaption>📖 História bíblica ilustrada</figcaption></figure>
+                <figure class="car-item"><img src="/dentro-versiculo.jpg" alt="Versículo para memorizar: Salmo 139:14" loading="lazy"><figcaption>✨ Versículo para memorizar</figcaption></figure>
+                <figure class="car-item"><img src="/dentro-colorir.jpg" alt="Atividade para colorir: Jesus ama as crianças" loading="lazy"><figcaption>🖍️ Atividade para colorir</figcaption></figure>
+                <figure class="car-item"><img src="/dentro-recortar.jpg" alt="Atividade de recortar: animais da arca de Noé" loading="lazy"><figcaption>✂️ Atividade de recortar</figcaption></figure>
+                <figure class="car-item"><img src="/dentro-sumario.jpg" alt="Sumário das 52 lições" loading="lazy"><figcaption>🗂️ Sumário das 52 lições</figcaption></figure>
+            </div>
+            <button class="car-seta car-next" type="button" aria-label="Próxima página">›</button>
+            <div class="car-dots" aria-hidden="true"></div>
+            <p class="car-dica">👉 Arraste para o lado para ver todas as páginas</p>
         </div>
         <div class="stats">
             <div class="stat"><b>52</b><small>lições, uma por domingo</small></div>
@@ -1146,26 +1267,82 @@
         </div>
     </section>
 
+    <!-- 4 · Bônus -->
+    <section class="bonus-section">
+        <p class="kicker">Para deixar a sua vida ainda mais fácil...</p>
+        <h2 style="margin-bottom:16px;">Levando hoje, você destrava 4 Bônus Exclusivos para prender a atenção das crianças</h2>
+        <p class="section-subtitle bonus-sub">Exclusivos do Arsenal Completo (que custariam <s>R$ 103,00</s> se comprados separadamente, mas hoje são seus de <b>GRAÇA</b>).</p>
+        <div class="carrossel carrossel-bonus">
+            <button class="car-seta car-prev" type="button" aria-label="Bônus anterior">‹</button>
+            <div class="car-trilho" tabindex="0" aria-label="Bônus do Arsenal Completo">
+            <div class="bonus-card car-item">
+                <div class="bonus-image"><img src="/bonus-atividades.png" alt="Bônus 1: +500 Atividades Bíblicas Infantis para imprimir" loading="lazy"></div>
+                <div class="bonus-content">
+                    <div class="bonus-label">Bônus #1</div>
+                    <h3>+500 Atividades Bíblicas Extras</h3>
+                    <p class="bonus-desc">Atividades bíblicas extras para imprimir e usar com as crianças.</p>
+                    <div class="bonus-price"><span class="bonus-price-old">R$ 47,00</span><span class="bonus-price-new">Grátis</span></div>
+                </div>
+            </div>
+            <div class="bonus-card car-item">
+                <div class="bonus-image"><img src="/bonus-dinamicas.png" alt="Bônus 2: +40 Dinâmicas e Brincadeiras Cristãs" loading="lazy"></div>
+                <div class="bonus-content">
+                    <div class="bonus-label">Bônus #2</div>
+                    <h3>+40 Dinâmicas e Brincadeiras</h3>
+                    <p class="bonus-desc">Dinâmicas e brincadeiras cristãs para usar na aula.</p>
+                    <div class="bonus-price"><span class="bonus-price-old">R$ 27,00</span><span class="bonus-price-new">Grátis</span></div>
+                </div>
+            </div>
+            <div class="bonus-card car-item">
+                <div class="bonus-image"><img src="/bonus-versiculos.png" alt="Bônus 3: Kit de Versículos Ilustrados para crianças" loading="lazy"></div>
+                <div class="bonus-content">
+                    <div class="bonus-label">Bônus #3</div>
+                    <h3>Kit de Versículos Ilustrados</h3>
+                    <p class="bonus-desc">Versículos ilustrados para as crianças memorizarem a Palavra.</p>
+                    <div class="bonus-price"><span class="bonus-price-old">R$ 19,00</span><span class="bonus-price-new">Grátis</span></div>
+                </div>
+            </div>
+            <div class="bonus-card car-item">
+                <div class="bonus-image"><img src="/bonus-calendario.png" alt="Bônus 4: Calendário do Ministério Infantil" loading="lazy"></div>
+                <div class="bonus-content">
+                    <div class="bonus-label">Bônus #4</div>
+                    <h3>Calendário do Ministério Infantil</h3>
+                    <p class="bonus-desc">Calendário para organizar o ano do ministério infantil.</p>
+                    <div class="bonus-price"><span class="bonus-price-old">R$ 10,00</span><span class="bonus-price-new">Grátis</span></div>
+                </div>
+            </div>
+            </div>
+            <button class="car-seta car-next" type="button" aria-label="Próximo bônus">›</button>
+            <div class="car-dots" aria-hidden="true"></div>
+            <p class="car-dica">👉 Arraste para o lado para ver todos os bônus</p>
+        </div>
+    </section>
+
     <!-- Depoimentos reais -->
     <section class="depo-section">
         <p style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);margin-bottom:16px;">Depoimentos reais de clientes</p>
         <h2 style="margin-bottom:16px;">Quem compra recomenda</h2>
         <div class="depo-rating"><span class="depo-stars">★★★★★</span> Pais e professores que já estão usando as lições</div>
-        <div class="depo-grid">
-            <figure class="depo-card"><span class="depo-notch"></span>
+        <div class="carrossel carrossel-depo">
+            <button class="car-seta car-prev" type="button" aria-label="Depoimento anterior">‹</button>
+            <div class="car-trilho" tabindex="0" aria-label="Depoimentos de clientes">
+            <figure class="depo-card car-item"><span class="depo-notch"></span>
                 <img src="/depo-ana-paula.jpg" alt="Conversa no WhatsApp com a cliente Ana Paula, com foto da criança pintando a atividade" loading="lazy">
             </figure>
-            <figure class="depo-card"><span class="depo-notch"></span>
+            <figure class="depo-card car-item"><span class="depo-notch"></span>
                 <img src="/depo-joao.jpg" alt="Conversa no WhatsApp com o cliente João" loading="lazy">
             </figure>
-            <figure class="depo-card"><span class="depo-notch"></span>
+            <figure class="depo-card car-item"><span class="depo-notch"></span>
                 <img src="/depo-paula.jpg" alt="Conversa no WhatsApp com a cliente Paula, com foto da filha pintando a atividade" loading="lazy">
             </figure>
-            <figure class="depo-card"><span class="depo-notch"></span>
+            <figure class="depo-card car-item"><span class="depo-notch"></span>
                 <img src="/depo-julia.jpg" alt="Conversa no WhatsApp com a cliente Julia" loading="lazy">
             </figure>
+            </div>
+            <button class="car-seta car-next" type="button" aria-label="Próximo depoimento">›</button>
+            <div class="car-dots" aria-hidden="true"></div>
+            <p class="car-dica">👉 Arraste para o lado para ver mais depoimentos</p>
         </div>
-        <p class="depo-hint">Arraste para o lado para ver mais →</p>
         <div style="text-align:center;">
             <a href="#planos" class="cta-button">Quero as 52 lições</a>
         </div>
@@ -1275,6 +1452,14 @@
                 <p>Não! O material é completo e pronto para usar, ideal para quem está começando ou tem pouca experiência.</p>
             </details>
             <details>
+                <summary>Posso usar em casa e também na Escola Bíblica Dominical?</summary>
+                <p>Sim. As lições são para imprimir e aplicar onde você quiser: em casa com seus filhos, na sala da Escola Bíblica Dominical, em aulas bíblicas ou em eventos da igreja.</p>
+            </details>
+            <details>
+                <summary>Quais arquivos estão incluídos?</summary>
+                <p>No Arsenal Completo você recebe as 52 Lições de Escola Dominical Infantil e os 4 bônus: +500 Atividades Bíblicas Extras, +40 Dinâmicas e Brincadeiras, Kit de Versículos Ilustrados e Calendário do Ministério Infantil. No Pacote Essencial você recebe apenas as 52 lições. Tudo em PDF, pronto para imprimir.</p>
+            </details>
+            <details>
                 <summary>Serve para qualquer igreja ou denominação?</summary>
                 <p>Sim. As lições são baseadas nas histórias da Bíblia e podem ser usadas em qualquer igreja, em casa ou em grupos de estudo bíblico.</p>
             </details>
@@ -1293,7 +1478,24 @@
         </div>
     </section>
 
-    <!-- NOVO · CTA final -->
+    <!-- 9 · Bio da especialista -->
+    <section>
+        <p class="kicker">Quem preparou este material</p>
+        <h2>Conheça a especialista</h2>
+        <div class="author-section">
+            <div class="author-image">
+                <img src="/rayssa-andrade.png" alt="Profa. Rayssa Andrade" loading="lazy">
+            </div>
+            <div class="author-content">
+                <h3>Profa. Rayssa Andrade</h3>
+                <p class="author-role">Pedagoga e líder de Ministério Infantil</p>
+                <p>Muito prazer, eu sou a Profa. Rayssa Andrade! Sou pedagoga, atuo no ministério infantil há mais de 18 anos e já capacitei centenas de professores de Escola Dominical por todo o país.</p>
+                <p>Sei que quem ensina as crianças, em casa ou na igreja, vive cansado e sem tempo. Por isso, reuni o melhor da minha experiência em sala em um material prático para você levar o amor de Deus aos pequenos, longe das telas e com tranquilidade no fim de semana.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA final (mantido do site atual) -->
     <section class="dark-section cta-final">
         <h2>O próximo domingo já pode ser diferente</h2>
         <p>Pare de improvisar e de perder horas procurando ideias. Tenha 52 aulas prontas e veja as crianças prestando atenção na Palavra de Deus.</p>
@@ -1312,6 +1514,53 @@
         <p style="margin-top:10px;"><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · <a href="#">Contato</a></p>
         <p class="aviso">Este site não faz parte do Facebook ou da Meta Platforms, Inc. Os resultados podem variar de pessoa para pessoa.</p>
     </footer>
+
+    <!-- Carrosséis: setas, bolinhas e passagem automática -->
+    <script>
+    (function () {
+        var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.querySelectorAll('.carrossel').forEach(function (box) {
+            var trilho = box.querySelector('.car-trilho');
+            var itens = box.querySelectorAll('.car-item');
+            var dots = box.querySelector('.car-dots');
+            var prev = box.querySelector('.car-prev');
+            var next = box.querySelector('.car-next');
+            if (!trilho || !itens.length) return;
+            itens.forEach(function () { dots.appendChild(document.createElement('span')); });
+            function passo() { return itens[0].getBoundingClientRect().width + (parseFloat(getComputedStyle(trilho).columnGap) || 0); }
+            function maximo() { return trilho.scrollWidth - trilho.clientWidth - 2; }
+            function update() {
+                var i = Math.round(trilho.scrollLeft / passo());
+                if (trilho.scrollLeft >= maximo()) i = itens.length - 1;
+                dots.querySelectorAll('span').forEach(function (d, k) { d.classList.toggle('ativo', k === i); });
+                prev.disabled = trilho.scrollLeft <= 2;
+                next.disabled = trilho.scrollLeft >= maximo();
+                box.classList.toggle('sem-rolagem', maximo() <= 0);
+            }
+            var timer = null, parado = false;
+            function parar() { parado = true; clearInterval(timer); timer = null; }
+            prev.addEventListener('click', function () { parar(); trilho.scrollBy({ left: -passo(), behavior: 'smooth' }); });
+            next.addEventListener('click', function () { parar(); trilho.scrollBy({ left: passo(), behavior: 'smooth' }); });
+            trilho.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+
+            // Passa sozinho a cada 3,5 segundos enquanto está na tela; para quando a pessoa mexe
+            ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { trilho.addEventListener(ev, parar, { passive: true }); });
+            if (reduzir || !('IntersectionObserver' in window)) return;
+            new IntersectionObserver(function (e) {
+                if (parado) return;
+                if (e[0].isIntersecting && !timer) {
+                    timer = setInterval(function () {
+                        if (maximo() <= 0) return;
+                        if (trilho.scrollLeft >= maximo()) trilho.scrollTo({ left: 0, behavior: 'smooth' });
+                        else trilho.scrollBy({ left: passo(), behavior: 'smooth' });
+                    }, 3500);
+                } else if (!e[0].isIntersecting && timer) { clearInterval(timer); timer = null; }
+            }, { threshold: 0.5 }).observe(trilho);
+        });
+    })();
+    </script>
 
     <!-- Back redirect: ao tentar voltar/sair, abre o checkout com desconto -->
     <script>
