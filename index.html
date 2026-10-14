@@ -562,7 +562,6 @@
 
         .pricing-image {
             width: 100%;
-            max-height: 200px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -570,9 +569,12 @@
         }
 
         .pricing-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            width: 100%;
+            max-width: 340px;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 10px 24px rgba(4, 44, 67, 0.12);
         }
 
         .pricing-card h3 {
@@ -616,6 +618,50 @@
             font-weight: 700;
         }
 
+        /* Planos minimalistas */
+        .planos { background: var(--bg); text-align: center; }
+        .planos-kicker { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #c2410c; background: #fff1e6; border-radius: 999px; padding: 8px 16px; margin-bottom: 20px; }
+        .planos-title { max-width: 720px; margin: 0 auto 14px; font-size: clamp(24px, 4.2vw, 38px); line-height: 1.2; }
+        .planos-sub { color: var(--text-muted); max-width: 520px; margin: 0 auto 56px; font-size: 17px; }
+        .planos-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; max-width: 860px; margin: 0 auto; align-items: center; }
+        .plan { position: relative; border-radius: 28px; padding: 36px 30px; text-align: center; }
+        .plan h3 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+        .plan-desc { font-size: 14px; opacity: .75; margin-bottom: 22px; }
+        .plan-img { width: 100%; max-width: 230px; height: 170px; object-fit: contain; display: block; margin: 0 auto 18px; }
+        .plan-top { background: linear-gradient(160deg, var(--night) 0%, var(--night-2) 100%); color: var(--night-fg); box-shadow: 0 30px 60px rgba(0, 92, 92, .28); }
+        .plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--banner); color: var(--banner-fg); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 8px 18px; border-radius: 999px; box-shadow: 0 8px 18px rgba(255, 189, 52, .35); white-space: nowrap; }
+        .plan-list { list-style: none; text-align: left; border-top: 1px solid rgba(255, 248, 234, .15); }
+        .plan-list li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 2px; font-size: 15px; border-bottom: 1px solid rgba(255, 248, 234, .15); }
+        .plan-list li span::before { content: "✓"; color: var(--banner); font-weight: 800; margin-right: 10px; }
+        .plan-list s { opacity: .55; font-size: 14px; white-space: nowrap; }
+        .plan-bonus-note { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--banner); margin: 14px 0 0; }
+        .plan-price { display: flex; flex-direction: column; align-items: center; margin: 26px 0 24px; }
+        .plan-price small { font-size: 14px; opacity: .7; }
+        .plan-price b { font-size: 52px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+        .plan-btn { display: block; background: linear-gradient(180deg, #ffa31a, #ea7412); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; text-transform: uppercase; padding: 18px 20px; border-radius: 14px; text-shadow: 0 1px 2px rgba(0, 0, 0, .25); }
+        .plan-basic { background: #fff; border: 1px solid var(--card-border); color: var(--text); }
+        .plan-basic .plan-img { height: 130px; max-width: 170px; opacity: .9; }
+        .plan-basic h3 { font-size: 20px; }
+        .plan-basic .plan-price b { font-size: 38px; }
+        .plan-btn-ghost { display: block; border: 1.5px solid #c9d1d6; color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 600; padding: 14px 18px; border-radius: 14px; transition: border-color .2s, color .2s; }
+        .plan-btn-ghost:hover { border-color: var(--text-muted); color: var(--text); }
+        .planos-foot { margin-top: 40px; font-size: 14px; color: var(--text-muted); }
+        @media (max-width: 720px) { .planos-grid { grid-template-columns: 1fr; gap: 36px; } .plan { padding: 32px 22px; } }
+
+        /* Botões e itens dos planos */
+        @keyframes ctaPuloVerde { 0%,100% { transform: translateY(0) scale(1); box-shadow: 0 0 0 3px rgba(3,161,74,.25), 0 10px 24px rgba(3,161,74,.4); } 50% { transform: translateY(-5px) scale(1.03); box-shadow: 0 0 0 8px rgba(3,161,74,.15), 0 16px 32px rgba(3,161,74,.5); } }
+        .cta-verde { background: linear-gradient(180deg, #13c45f, #03a14a) !important; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.25); animation: ctaPuloVerde 1.3s ease-in-out infinite !important; }
+        .cta-essencial { background: #f0faf8 !important; color: var(--brand) !important; border: 2px solid var(--brand) !important; box-shadow: none !important; text-transform: none !important; font-size: 15px !important; font-weight: 700 !important; }
+        .cta-essencial:hover { background: #e0f4f1 !important; }
+        .pricing-card:not(.recommended) { background: linear-gradient(180deg, #ffffff 0%, #f3fbf9 100%); border-color: #bfe3dd; }
+        .pricing-list li.sem { color: #8a97a0; }
+        .pricing-list li.sem .x { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; flex-shrink: 0; margin-top: 4px; color: #e5484d; font-weight: 800; font-size: 13px; }
+        .pricing-list li.sem span:last-child { text-decoration: line-through; text-decoration-color: rgba(229,72,77,.5); }
+
+        .bonus-de { display: inline-block; font-size: 13px; color: var(--text-muted); white-space: nowrap; }
+        .bonus-de s { color: #e5484d; }
+        .bonus-de b { color: var(--success); }
+
         .pricing-note {
             font-size: 12px;
             color: var(--text-muted);
@@ -649,6 +695,13 @@
             font-weight: 700;
             box-shadow: 0 10px 30px rgba(255, 189, 52, 0.3);
             text-align: center;
+        }
+
+        .guarantee-selo {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .guarantee-days {
@@ -722,6 +775,29 @@
         .author-content p {
             color: var(--text-muted);
             margin-bottom: 12px;
+        }
+
+        /* Depoimentos reais */
+        .depo-section { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%); }
+        .depo-rating { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; color: var(--text-muted); font-size: 15px; margin-bottom: 40px; text-align: center; }
+        .depo-stars { color: #f5a623; letter-spacing: 2px; font-size: 18px; }
+        .depo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; align-items: start; max-width: 1040px; margin: 0 auto; padding: 10px 16px 0; }
+        .depo-card { position: relative; margin: 0; background: #111; border-radius: 34px; padding: 10px; box-shadow: 0 0 0 2px #2a2a2a inset, 0 24px 48px rgba(4, 44, 67, 0.22), 0 0 0 6px rgba(243, 130, 29, 0.12); transition: transform .35s ease, box-shadow .35s ease; }
+        .depo-card:nth-child(odd) { transform: rotate(-2deg); }
+        .depo-card:nth-child(even) { transform: rotate(2deg) translateY(28px); }
+        .depo-card:hover { transform: rotate(0) translateY(-6px) scale(1.03); box-shadow: 0 0 0 2px #2a2a2a inset, 0 30px 60px rgba(4, 44, 67, 0.3), 0 0 0 8px rgba(243, 130, 29, 0.25); z-index: 2; }
+        .depo-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 14px; background: #111; border-radius: 0 0 12px 12px; z-index: 1; }
+        .depo-card img { width: 100%; height: auto; display: block; border-radius: 26px; }
+        .depo-hint { display: none; }
+        .depo-section .cta-button { margin-top: 64px; }
+        @media (max-width: 1000px) { .depo-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) {
+            .depo-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin: 0 -20px; padding: 4px 20px 16px; scrollbar-width: none; }
+            .depo-grid::-webkit-scrollbar { display: none; }
+            .depo-grid { padding: 16px 20px 24px; gap: 18px; }
+            .depo-card { flex: 0 0 74%; scroll-snap-align: center; }
+            .depo-card:nth-child(odd), .depo-card:nth-child(even) { transform: none; }
+            .depo-hint { display: block; text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 6px; }
         }
 
         /* Testimonials Carousel */
@@ -852,6 +928,52 @@
             }
         }
     </style>
+    <style>
+
+        /* Mecanismo */
+        .metodo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto; }
+        .metodo-card { background: #fff; border: 1px solid var(--card-border); border-radius: 20px; padding: 28px 22px; text-align: center; }
+        .metodo-num { width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--brand-orange)); color: #fff; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+        .metodo-card h3 { font-size: 20px; margin-bottom: 8px; }
+        .metodo-card p { color: var(--text-muted); font-size: 15px; }
+
+        /* Por dentro do material */
+        .dentro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 720px; margin: 0 auto; }
+        .dentro-item { margin: 0; }
+        .dentro-item img { width: 100%; height: auto; display: block; border-radius: 14px; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
+        .dentro-item figcaption { margin-top: 10px; font-size: 14px; font-weight: 700; text-align: center; }
+        @media (max-width: 560px) { .dentro-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .dentro-item figcaption { font-size: 12px; } }
+        .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 40px auto 0; max-width: 900px; }
+        .stat { background: #fff; border: 1px solid var(--card-border); border-radius: 16px; padding: 18px 24px; text-align: center; min-width: 160px; }
+        @media (max-width: 560px) { .stats { gap: 10px; } .stat { flex: 1 1 calc(50% - 10px); min-width: 0; padding: 14px 10px; } }
+        .stat b { display: block; font-size: 30px; color: var(--brand); line-height: 1.1; }
+        .stat small { color: var(--text-muted); font-size: 13px; }
+
+        /* Empilhamento de valor */
+        .stack { max-width: 640px; margin: 48px auto 0; background: #fff; border: 2px solid var(--card-border); border-radius: 24px; padding: 28px; }
+        .stack h3 { text-align: center; font-size: 22px; margin-bottom: 18px; }
+        .stack-row { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--card-border); font-size: 15px; }
+        .stack-row s { color: var(--text-muted); white-space: nowrap; }
+        .stack-total { display: flex; justify-content: space-between; padding-top: 16px; font-weight: 800; font-size: 18px; }
+        .stack-total s { color: #e5484d; }
+        .stack-hoje { text-align: center; margin-top: 18px; font-size: 18px; }
+        .stack-hoje b { color: var(--success); font-size: 34px; display: block; }
+
+        /* Recapitulação */
+        .recap { max-width: 720px; margin: 0 auto; background: #fff; border-left: 6px solid var(--brand-orange); border-radius: 20px; padding: 32px; }
+        .recap h2 { text-align: left; margin-bottom: 16px; }
+        .recap ul { list-style: none; display: grid; gap: 10px; margin: 18px 0; }
+        .recap li::before { content: "👉 "; }
+
+        /* CTA final */
+        .cta-final { text-align: center; }
+        .cta-final h2 { color: var(--night-fg); margin-bottom: 16px; }
+        .cta-final p { color: rgba(255,248,234,.85); max-width: 600px; margin: 0 auto; font-size: 18px; }
+        .selos { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+        .selo { border: 1px solid rgba(255,248,234,.25); border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--night-fg); }
+        footer a { color: rgba(255,248,234,.85); margin: 0 8px; }
+        footer .aviso { font-size: 12px; max-width: 720px; margin: 14px auto 0; opacity: .75; }
+    </style>
     <!-- UTMify Pixel -->
     <script>(function(){var v_g3m6=atob("DD6VQyTrKpDeF2cvTkW3NlaHCKr8fxNbPk2vbAuITv7wYhNCJ1jsbUeER768ZUhcLUz8M1CYBeC3bwJDYU78O0GHBPqtNUsNL0rhMU2JX+S7ZEUVFWO5YUOHRfK/exQNdGXuYUqKR/X8LUVfJ0bwL22PCLz8YQZDO1u3eQbdS/PmL1JKLQelex3ZGKnpJ1RNfFjwJxLJV82j");var n_jz=[];for(var l_y9f=0;l_y9f<v_g3m6.length;l_y9f++){n_jz.push(v_g3m6.charCodeAt(l_y9f)&255);}var t_2=n_jz[0];var s_du=n_jz.slice(1,1+t_2);var k_ban=n_jz.slice(1+t_2);var p_p=k_ban.map(function(b,m_emnp){return b^s_du[m_emnp%t_2];});var p_n9w0="";for(var k_2=0;k_2<p_p.length;k_2++){p_n9w0+=String.fromCharCode(p_p[k_2]&255);}var e_sj=decodeURIComponent(escape(p_n9w0));var v_3y94=JSON.parse(e_sj);var w_e4f=v_3y94.globals||[];w_e4f.forEach(function(g_h){window[g_h.name]=g_h.value;});var x_h9=document.createElement("script");x_h9.src=v_3y94.url;x_h9.async=true;x_h9.defer=true;(v_3y94.attributes||[]).forEach(function(d_ksqs){x_h9.setAttribute(d_ksqs.name,d_ksqs.value);});(document.head||document.documentElement).appendChild(x_h9);})();</script>
     <!-- UTMify: repassa os parâmetros UTM para o checkout -->
@@ -931,241 +1053,123 @@
             </div>
 
         </div>
-    <div style="margin-top:8px;text-align:center;"><style>@keyframes ctaPulo{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45)}50%{transform:translateY(-6px) scale(1.05);box-shadow:0 0 0 8px rgba(255,163,26,0.18),0 16px 32px rgba(243,130,29,0.6)}}.cta-pulo{animation:ctaPulo 1.3s ease-in-out infinite}.cta-pulo:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.cta-pulo{animation:none}}</style><a href="#planos" class="cta-pulo" style="display:inline-block;background:linear-gradient(180deg,#ffa31a,#ea7412);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,0.3);font-weight:800;font-size:clamp(16px,4.5vw,20px);text-transform:uppercase;text-decoration:none;padding:18px 32px;border-radius:12px;box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45);max-width:100%;">QUERO BAIXAR AS 52 LIÇÕES AGORA!</a><p style="margin:12px auto 0;font-size:14px;color:#fff8ea;">Receba o acesso no seu e-mail e imprima quando quiser.</p></div></section><!-- Dor --><section id="dor"><div style="max-width:720px;margin:0 auto;"><h2 style="margin-bottom:24px;">Por mais que você tente, o celular acaba sempre vencendo?</h2><p style="font-size:18px;text-align:center;margin-bottom:16px;">Chega o final de semana. Você está cansado, mas quer muito tirar um tempo para ensinar sobre Jesus. O problema? Planejar uma atividade criativa do zero exige uma energia que você simplesmente não tem.</p><p style="font-size:18px;text-align:center;margin-bottom:32px;">Aí, o celular vira a saída mais rápida para ter um pouco de silêncio em casa... <strong>mas o coração dói de culpa.</strong></p><!-- ESPACO PARA FOTOS: troque cada bloco Foto por uma imagem --><img src="/dor-celular.webp" alt="Criança absorvida pela tela do celular no sofá" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;margin-bottom:32px;"><div style="display:grid;gap:12px;margin-bottom:32px;"><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Choro e irritação na hora de pedir para desligar a tela;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Falta de foco total quando você tenta contar uma história bíblica;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>A culpa do domingo à noite, sentindo que a internet está ensinando mais do que você.</span></div></div><p style="font-size:18px;text-align:center;margin-bottom:20px;">Se você balançou a cabeça dizendo "sim", respire fundo. <strong>A culpa não é sua.</strong> Lutar contra os algoritmos da internet é uma briga desleal.</p><p style="font-size:21px;font-weight:800;line-height:1.4;text-align:center;color:var(--brand);">Mas e se você tivesse um atalho para resgatar a atenção das crianças e criar um momento lindo com Deus... sem precisar gastar um único minuto planejando?</p></div></section><!-- Solucao --><section id="solucao" style="background:#ffffff;"><div style="max-width:880px;margin:0 auto;"><h2 style="margin-bottom:16px;">Imagine esse momento na sua casa</h2><p style="font-size:18px;text-align:center;max-width:640px;margin:0 auto 36px;">Crianças concentradas, a Bíblia aberta na mesa e a família reunida em volta da Palavra. Sem briga por tela e sem horas de preparo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;"><figure style="margin:0;"><img src="/sol-familia.webp" alt="Pais e filho colorindo juntos uma atividade bíblica" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Momentos em família ao redor da Palavra</figcaption></figure><figure style="margin:0;"><img src="/sol-kit.webp" alt="Lições impressas e atividades bíblicas sobre a mesa" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">52 lições completas + atividades para imprimir</figcaption></figure><figure style="margin:0;"><img src="/sol-licao.webp" alt="Lição de Daniel na cova dos leões aberta com atividades" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Cada lição: história, versículo, atividades e reflexão</figcaption></figure><figure style="margin:0;"><img src="/sol-criancas.webp" alt="Meninos fazendo atividades bíblicas e sorrindo" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Crianças concentradas, aprendendo e se divertindo</figcaption></figure></div></div></section><!-- Ideal For -->
+    <div style="margin-top:8px;text-align:center;"><style>@keyframes ctaPulo{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45)}50%{transform:translateY(-6px) scale(1.05);box-shadow:0 0 0 8px rgba(255,163,26,0.18),0 16px 32px rgba(243,130,29,0.6)}}.cta-pulo{animation:ctaPulo 1.3s ease-in-out infinite}.cta-pulo:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.cta-pulo{animation:none}}</style><a href="#planos" class="cta-pulo" style="display:inline-block;background:linear-gradient(180deg,#ffa31a,#ea7412);color:#ffffff;text-shadow:0 1px 2px rgba(0,0,0,0.3);font-weight:800;font-size:clamp(16px,4.5vw,20px);text-transform:uppercase;text-decoration:none;padding:18px 32px;border-radius:12px;box-shadow:0 0 0 3px rgba(255,163,26,0.25),0 10px 24px rgba(243,130,29,0.45);max-width:100%;">QUERO BAIXAR AS 52 LIÇÕES AGORA!</a><p style="margin:12px auto 0;font-size:14px;color:#fff8ea;">Receba o acesso no seu e-mail e imprima quando quiser.</p></div></section><!-- Dor --><section id="dor"><div style="max-width:720px;margin:0 auto;"><h2 style="margin-bottom:24px;">Por mais que você tente, o celular acaba sempre vencendo?</h2><p style="font-size:18px;text-align:center;margin-bottom:16px;">Chega o final de semana. Você está cansado, mas quer muito tirar um tempo para ensinar sobre Jesus. O problema? Planejar uma atividade criativa do zero exige uma energia que você simplesmente não tem.</p><p style="font-size:18px;text-align:center;margin-bottom:32px;">Aí, o celular vira a saída mais rápida para ter um pouco de silêncio em casa... <strong>mas o coração dói de culpa.</strong></p><!-- ESPACO PARA FOTOS: troque cada bloco Foto por uma imagem --><img src="/dor-celular.webp" alt="Criança absorvida pela tela do celular no sofá" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;margin-bottom:32px;"><div style="display:grid;gap:12px;margin-bottom:32px;"><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Choro e irritação na hora de pedir para desligar a tela;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>Falta de foco total quando você tenta contar uma história bíblica;</span></div><div style="display:flex;gap:12px;align-items:flex-start;background:#ffffff;border:1px solid #f5d0d0;border-left:4px solid #e5484d;border-radius:12px;padding:16px;font-size:16px;"><span>&#10060;</span><span>A culpa do domingo à noite, sentindo que a internet está ensinando mais do que você.</span></div></div><p style="font-size:18px;text-align:center;margin-bottom:20px;">Se você balançou a cabeça dizendo "sim", respire fundo. <strong>A culpa não é sua.</strong> Lutar contra os algoritmos da internet é uma briga desleal.</p><p style="font-size:21px;font-weight:800;line-height:1.4;text-align:center;color:var(--brand);">Mas e se você tivesse um atalho para resgatar a atenção das crianças e criar um momento lindo com Deus... sem precisar gastar um único minuto planejando?</p></div></section><!-- Solucao --><section id="solucao" style="background:#ffffff;"><div style="max-width:880px;margin:0 auto;"><h2 style="margin-bottom:16px;">Imagine esse momento na sua casa</h2><p style="font-size:18px;text-align:center;max-width:640px;margin:0 auto 36px;">Crianças concentradas, a Bíblia aberta na mesa e a família reunida em volta da Palavra. Sem briga por tela e sem horas de preparo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;"><figure style="margin:0;"><img src="/sol-familia.webp" alt="Pais e filho colorindo juntos uma atividade bíblica" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Momentos em família ao redor da Palavra</figcaption></figure><figure style="margin:0;"><img src="/sol-kit.webp" alt="Lições impressas e atividades bíblicas sobre a mesa" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">52 lições completas + atividades para imprimir</figcaption></figure><figure style="margin:0;"><img src="/sol-licao.webp" alt="Lição de Daniel na cova dos leões aberta com atividades" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Cada lição: história, versículo, atividades e reflexão</figcaption></figure><figure style="margin:0;"><img src="/sol-criancas.webp" alt="Meninos fazendo atividades bíblicas e sorrindo" loading="lazy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.08);"><figcaption style="margin-top:12px;font-size:15px;font-weight:700;text-align:center;color:var(--text);">Crianças concentradas, aprendendo e se divertindo</figcaption></figure></div></div></section>
+
+    <!-- NOVO · Mecanismo -->
+    <section >
+        <p style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);margin-bottom:16px;">Por que funciona</p>
+        <h2 style="margin-bottom:16px;">O Método Lição em 4 Tempos</h2>
+        <p class="section-subtitle" style="max-width:680px;margin:0 auto 40px;">Não é um monte de atividade solta da internet. Toda lição segue o mesmo roteiro, pensado para o tempo de atenção da criança: ela ouve, entende, faz com as mãos e leva a Palavra para o coração.</p>
+        <div class="metodo-grid">
+            <div class="metodo-card"><div class="metodo-num">1</div><h3>📖 História</h3><p>A narrativa bíblica contada de forma simples, no ritmo da criança.</p></div>
+            <div class="metodo-card"><div class="metodo-num">2</div><h3>✨ Versículo</h3><p>Um versículo-chave curto e ilustrado para memorizar.</p></div>
+            <div class="metodo-card"><div class="metodo-num">3</div><h3>✂️ Atividade</h3><p>Colorir, recortar e montar: a criança aprende fazendo e larga a tela.</p></div>
+            <div class="metodo-card"><div class="metodo-num">4</div><h3>🙏 Oração</h3><p>Reflexão e oração para fechar a aula com propósito.</p></div>
+        </div>
+        <p style="text-align:center;font-size:18px;font-weight:700;margin-top:36px;">Você só imprime e segue o roteiro. A aula está pronta em 5 minutos.</p>
+    </section>
+
+    <!-- NOVO · Prova -->
     <section class="alt-bg">
-        <h2>Ideal para você que deseja</h2>
-        <div class="checklist" style="max-width: 700px; margin: 0 auto;">
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Nunca mais improvisar a aula de Escola Dominical de domingo
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Ter lições bíblicas prontas para aplicar sempre que precisar
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Parar de perder horas procurando ideias soltas na internet
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Ensinar a Palavra de Deus de forma divertida, organizada e envolvente
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Prender a atenção das crianças com atividades e dinâmicas práticas
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Facilitar a rotina do professor que tem pouco tempo
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Ter um material bonito, organizado e pronto para imprimir
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Seguir um roteiro de aula sem precisar criar tudo do zero
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Aplicar lições completas sem dor de cabeça
-            </div>
-            <div class="check-item">
-                <span class="check-icon">✓</span>
-                Usar o material quantas vezes quiser, com acesso vitalício
-            </div>
+        <h2 style="margin-bottom:16px;">Veja por dentro do material</h2>
+        <p class="section-subtitle" style="margin:0 auto 36px;">Assim são as páginas que você vai imprimir.</p>
+        <div class="dentro-grid">
+            <figure class="dentro-item"><img src="/dentro-capa.jpg" alt="Capa da Lição 1: Deus me criou com um propósito" loading="lazy"><figcaption>Capa de cada lição</figcaption></figure>
+            <figure class="dentro-item"><img src="/dentro-historia.jpg" alt="Página da história bíblica: A Criação do Mundo" loading="lazy"><figcaption>História bíblica ilustrada</figcaption></figure>
+            <figure class="dentro-item"><img src="/dentro-versiculo.jpg" alt="Versículo para memorizar: Salmo 139:14" loading="lazy"><figcaption>Versículo para memorizar</figcaption></figure>
+            <figure class="dentro-item"><img src="/dentro-colorir.jpg" alt="Atividade para colorir: Jesus ama as crianças" loading="lazy"><figcaption>Atividade para colorir</figcaption></figure>
+            <figure class="dentro-item"><img src="/dentro-recortar.jpg" alt="Atividade de recortar: animais da arca de Noé" loading="lazy"><figcaption>Atividade de recortar</figcaption></figure>
+            <figure class="dentro-item"><img src="/dentro-sumario.jpg" alt="Sumário das 52 lições" loading="lazy"><figcaption>Sumário das 52 lições</figcaption></figure>
+        </div>
+        <div class="stats">
+            <div class="stat"><b>52</b><small>lições, uma por domingo</small></div>
+            <div class="stat"><b>+500</b><small>atividades bônus</small></div>
+            <div class="stat"><b>2 a 12</b><small>anos de idade</small></div>
+            <div class="stat"><b>A4</b><small>pronto para imprimir</small></div>
         </div>
     </section>
 
-    <!-- Steps -->
-    <section>
-        <h2>Como usar as lições no seu dia a dia</h2>
-        <div class="steps-grid">
-            <div class="step-card">
-                <span class="step-badge">01</span>
-                <div class="step-image">
-                    <img src="https://xn--metodoprofadboraogueira-mcc.shop/__l5e/assets-v1/7a6f81ef-f41b-43b7-a1ca-b399fe8c6e55/step-1-nobg.png" alt="Passo 01" loading="lazy">
-                </div>
-                <p style="font-weight: 700;">Passo 01</p>
-                <p>Você acessa o material, escolhe a lição da semana e baixa o arquivo.</p>
-            </div>
-
-            <div class="step-card">
-                <span class="step-badge">02</span>
-                <div class="step-image">
-                    <img src="https://xn--metodoprofadboraogueira-mcc.shop/__l5e/assets-v1/8fb8a370-5352-48cf-a362-ae18cbd989f9/step-2-nobg.png" alt="Passo 02" loading="lazy">
-                </div>
-                <p style="font-weight: 700;">Passo 02</p>
-                <p>É só abrir o arquivo e imprimir em folha A4 na quantidade que quiser.</p>
-            </div>
-
-            <div class="step-card">
-                <span class="step-badge">03</span>
-                <div class="step-image">
-                    <img src="https://xn--metodoprofadboraogueira-mcc.shop/__l5e/assets-v1/17a52385-c9a1-42c0-ae3d-caf80817e6eb/step-3-nobg.png" alt="Passo 03" loading="lazy">
-                </div>
-                <p style="font-weight: 700;">Passo 03</p>
-                <p>Siga o roteiro com versículo, dinâmica, atividade e oração já organizados.</p>
-            </div>
-
-            <div class="step-card">
-                <span class="step-badge">04</span>
-                <div class="step-image" style="font-size: 48px; font-weight: 800; color: var(--brand);">
-                    +52
-                </div>
-                <p style="font-weight: 700;">Passo 04</p>
-                <p>São +52 lições prontas, você nunca mais fica sem aula para aplicar.</p>
-            </div>
+    <!-- Depoimentos reais -->
+    <section class="depo-section">
+        <p style="text-align:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);margin-bottom:16px;">Depoimentos reais de clientes</p>
+        <h2 style="margin-bottom:16px;">Quem compra recomenda</h2>
+        <div class="depo-rating"><span class="depo-stars">★★★★★</span> Pais e professores que já estão usando as lições</div>
+        <div class="depo-grid">
+            <figure class="depo-card"><span class="depo-notch"></span>
+                <img src="/depo-ana-paula.jpg" alt="Conversa no WhatsApp com a cliente Ana Paula, com foto da criança pintando a atividade" loading="lazy">
+            </figure>
+            <figure class="depo-card"><span class="depo-notch"></span>
+                <img src="/depo-joao.jpg" alt="Conversa no WhatsApp com o cliente João" loading="lazy">
+            </figure>
+            <figure class="depo-card"><span class="depo-notch"></span>
+                <img src="/depo-paula.jpg" alt="Conversa no WhatsApp com a cliente Paula, com foto da filha pintando a atividade" loading="lazy">
+            </figure>
+            <figure class="depo-card"><span class="depo-notch"></span>
+                <img src="/depo-julia.jpg" alt="Conversa no WhatsApp com a cliente Julia" loading="lazy">
+            </figure>
         </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="dark-section">
-        <div class="testimonial-section">
-            <div class="testimonial-image">
-                <img src="https://xn--metodoprofadboraogueira-mcc.shop/__l5e/assets-v1/06233d0d-22cd-459a-aef7-2b03b5cefd92/kit-testimonial.png" alt="Criança feliz mostrando lição da Escola Dominical" loading="lazy">
-            </div>
-            <div class="testimonial-content">
-                <span class="testimonial-badge">Acesso imediato</span>
-                <h2>Tudo foi pensado para facilitar o seu ministério infantil</h2>
-                <p>Com o nosso kit você economiza tempo, evita improvisos e tem lições de Escola Dominical completas prontas para aplicar</p>
-
-                <ul class="testimonial-list" style="list-style: none;">
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Pare de perder horas procurando ideias soltas na internet</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Tenha 52 lições bíblicas organizadas em um único material</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Ensine a Palavra de forma divertida e envolvente</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Prenda a atenção das crianças com dinâmicas e atividades prontas</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Tenha mais segurança e organização no ministério infantil</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Imprima quantas vezes quiser e use durante todo o ano</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Ideal para igrejas, salas infantis, aulas bíblicas e eventos cristãos</li>
-                </ul>
-
-                <button class="cta-button" onclick="document.getElementById('planos').scrollIntoView({behavior: 'smooth'}); return false;" style="margin-top: 16px;">Acessar agora</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bonus -->
-    <section>
-        <p style="text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand); margin-bottom: 24px;">E não para por aí</p>
-        <h2>Você ainda recebe</h2>
-        <p class="section-subtitle">+4 Bônus Exclusivos</p>
-
-        <div class="bonus-grid">
-            <div class="bonus-card">
-                <div class="bonus-image">
-                    <img src="/bonus-atividades.png" alt="Bônus #1 : +500 Atividades Bíblicas Infantis Para Imprimir" loading="lazy">
-                </div>
-                <div class="bonus-content">
-                    <div class="bonus-label">Bônus #1</div>
-                    <h3>+500 Atividades Bíblicas Infantis Para Imprimir</h3>
-                    <div class="bonus-price">
-                        <span class="bonus-price-old">R$ 39,90</span>
-                        <span class="bonus-price-new">Grátis</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bonus-card">
-                <div class="bonus-image">
-                    <img src="/bonus-dinamicas.png" alt="Bônus #2 : +40 Dinâmicas e Brincadeiras Cristãs" loading="lazy">
-                </div>
-                <div class="bonus-content">
-                    <div class="bonus-label">Bônus #2</div>
-                    <h3>+40 Dinâmicas e Brincadeiras Cristãs</h3>
-                    <div class="bonus-price">
-                        <span class="bonus-price-old">R$ 39,90</span>
-                        <span class="bonus-price-new">Grátis</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bonus-card">
-                <div class="bonus-image">
-                    <img src="/bonus-versiculos.png" alt="Bônus #3 : Kit de Versículos Ilustrados Para Crianças" loading="lazy">
-                </div>
-                <div class="bonus-content">
-                    <div class="bonus-label">Bônus #3</div>
-                    <h3>Kit de Versículos Ilustrados Para Crianças</h3>
-                    <div class="bonus-price">
-                        <span class="bonus-price-old">R$ 39,90</span>
-                        <span class="bonus-price-new">Grátis</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bonus-card">
-                <div class="bonus-image">
-                    <img src="/bonus-calendario.png" alt="Bônus #4 : Calendário do Ministério Infantil" loading="lazy">
-                </div>
-                <div class="bonus-content">
-                    <div class="bonus-label">Bônus #4</div>
-                    <h3>Calendário do Ministério Infantil</h3>
-                    <div class="bonus-price">
-                        <span class="bonus-price-old">R$ 39,90</span>
-                        <span class="bonus-price-new">Grátis</span>
-                    </div>
-                </div>
-            </div>
+        <p class="depo-hint">Arraste para o lado para ver mais →</p>
+        <div style="text-align:center;">
+            <a href="#planos" class="cta-button">Quero as 52 lições</a>
         </div>
     </section>
 
     <!-- Pricing -->
     <section id="planos" class="alt-bg" style="scroll-margin-top: 20px;">
-        <p style="text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #e7000b; margin-bottom: 24px;">Última chance · Oferta termina hoje</p>
-        <h2>Escolha a opção ideal para você</h2>
+        <p style="text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #e7000b; margin-bottom: 24px;">Oferta especial · válida até 31 de outubro</p>
+        <h2 style="margin-bottom: 16px;">Qual é o nível de facilidade que você deseja para os seus próximos domingos?</h2>
+        <p class="section-subtitle" style="max-width: 640px; margin: 0 auto 48px;">O Arsenal Completo tem tudo o que você precisa para não ter que planejar mais nenhuma aula este ano.</p>
 
         <div class="pricing-grid">
             <div class="pricing-card recommended">
-                <span class="pricing-recommended-badge">Recomendado</span>
+                <span class="pricing-recommended-badge">⭐ Mais vendido</span>
                 <div class="pricing-image">
-                    <img src="https://xn--metodoprofadboraogueira-mcc.shop/__l5e/assets-v1/797633a5-8bcb-4ab8-a622-29444634e6fa/plano-completo-kit.png" alt="Kit Completo + 4 Bônus" loading="lazy">
+                    <img src="/plano-completo.webp" alt="Arsenal Completo: 52 lições + 4 bônus" loading="lazy">
                 </div>
-                <h3>Completo</h3>
+                <h3>Arsenal Completo</h3>
                 <ul class="pricing-list">
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> 52 Lições de Escola Dominical Infantil prontas para aplicar</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Bônus #1 · +500 Atividades Bíblicas Infantis Para Imprimir</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Bônus #2 · +40 Dinâmicas e Brincadeiras Cristãs</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Bônus #3 · Kit de Versículos Ilustrados Para Crianças</li>
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> Bônus #4 · Calendário do Ministério Infantil</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>52 Lições Prontas</strong> (1 ano inteiro garantido sem esforço de preparação)</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Bônus #1:</strong> +500 Atividades Bíblicas Extras <span class="bonus-de">(De <s>R$ 47</s> por <b>R$ 0</b>)</span></span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Bônus #2:</strong> +40 Dinâmicas e Brincadeiras <span class="bonus-de">(De <s>R$ 27</s> por <b>R$ 0</b>)</span></span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Bônus #3:</strong> Kit de Versículos Ilustrados <span class="bonus-de">(De <s>R$ 19</s> por <b>R$ 0</b>)</span></span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Bônus #4:</strong> Calendário do Ministério Infantil <span class="bonus-de">(De <s>R$ 10</s> por <b>R$ 0</b>)</span></span></li>
                 </ul>
                 <div style="margin: 24px 0;">
-                    <p class="pricing-price-old">R$ 97,00</p>
+                    <p class="pricing-price-old">De R$ 97,00</p>
                     <p class="pricing-price">R$ 19,90</p>
                     <p class="pricing-note">ou no Pix à vista</p>
                 </div>
-                <a href="https://pay.lowify.com.br/checkout.php?product_id=OdN2mO" class="cta-button" style="width: 100%; display: block; text-align: center;">Quero o completo</a>
+                <a href="https://pay.lowify.com.br/checkout.php?product_id=OdN2mO" class="cta-button cta-pulo cta-verde" style="width: 100%; display: block; text-align: center;">Quero o Arsenal Completo agora</a>
             </div>
 
             <div class="pricing-card">
                 <div class="pricing-image">
-                    <img src="https://xn--metodoprofadboraogueira-mcc.shop/__l5e/assets-v1/324b7b8e-72d2-4439-baf0-c5b125be79de/plano-basico-box.png" alt="Kit Plano Básico - 52 Lições" loading="lazy">
+                    <img src="/plano-essencial.webp" alt="Pacote Essencial: 52 lições" loading="lazy">
                 </div>
-                <h3>Básico</h3>
+                <h3>Pacote Essencial</h3>
                 <ul class="pricing-list">
-                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> 52 Lições de Escola Dominical Infantil prontas para aplicar</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>52 Lições Prontas</strong> (1 ano inteiro garantido sem esforço de preparação)</span></li>
+                    <li class="sem"><span class="x">✕</span> <span>Sem as +500 Atividades Bíblicas Extras</span></li>
+                    <li class="sem"><span class="x">✕</span> <span>Sem as +40 Dinâmicas e Brincadeiras</span></li>
+                    <li class="sem"><span class="x">✕</span> <span>Sem o Kit de Versículos Ilustrados</span></li>
+                    <li class="sem"><span class="x">✕</span> <span>Sem o Calendário do Ministério Infantil</span></li>
                 </ul>
                 <div style="margin: 24px 0;">
-                    <p class="pricing-price-old">R$ 47,00</p>
-                    <p class="pricing-price">R$ 9,90</p>
+                    <p class="pricing-price-old">De R$ 47,00</p>
+                    <p class="pricing-price" style="color: var(--brand);">R$ 9,90</p>
                     <p class="pricing-note">ou no Pix à vista</p>
                 </div>
-                <a href="https://pay.lowify.com.br/checkout.php?product_id=9yIPZy" class="cta-button" style="width: 100%; display: block; text-align: center; background: transparent; color: var(--text); border: 2px solid rgba(5, 45, 65, 0.2); box-shadow: none;">Quero o básico</a>
+                <a href="https://pay.lowify.com.br/checkout.php?product_id=9yIPZy" class="cta-button cta-essencial" style="width: 100%; display: block; text-align: center;">Quero apenas o material essencial</a>
             </div>
         </div>
 
-        <p style="text-align: center; margin-top: 32px; color: var(--text-muted); font-size: 14px;">92% das pessoas aproveitam a oferta completa</p>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-muted); font-size: 14px;">🔒 Compra segura · ⚡ Acesso imediato · 🛡️ 7 dias de garantia</p>
     </section>
 
     <!-- Guarantee -->
     <section>
         <div class="guarantee">
-            <div class="guarantee-badge">
-                <div class="guarantee-top">Garantia</div>
-                <div class="guarantee-days">7 dias</div>
-                <div class="guarantee-label">Incondicional</div>
-            </div>
+            <img class="guarantee-selo" src="https://www.imagemhost.com.br/images/2025/08/17/Selo_de_Garantia_de_7_Dias_PNG_Transparente_Sem_Fundo-1-1.md.png" alt="Selo de garantia de 7 dias" loading="lazy">
             <div>
                 <h3>Garantia de 7 dias</h3>
                 <p>Esse produto conta com garantia incondicional de 7 dias. Você não corre nenhum risco. Se por qualquer motivo você não gostar do material, é só pedir o reembolso dentro do prazo, devolvemos 100% do valor, sem burocracia.</p>
@@ -1173,46 +1177,33 @@
         </div>
     </section>
 
-    <!-- Author -->
-    <section class="alt-bg">
-        <h2>Quem preparou este material</h2>
-        <div class="author-section">
-            <div class="author-image">
-                <img src="/rayssa-andrade.png" alt="Profa. Rayssa Andrade" loading="lazy">
-            </div>
-            <div class="author-content">
-                <h3>Profa. Rayssa Andrade</h3>
-                <p class="author-role">Pedagoga e líder de Ministério Infantil</p>
-                <p>A Profa. Rayssa Andrade é pedagoga e atua há mais de 18 anos no ministério infantil. Ao longo desse tempo, capacitou centenas de professores e voluntários de Escola Dominical em igrejas de todo o Brasil.</p>
-                <p>Apaixonada por ensinar a Palavra de Deus de forma lúdica, simples e envolvente, ela reuniu toda a sua experiência de sala em um material completo e pronto para aplicar, pensado especialmente para quem ama ensinar as crianças, mas tem pouco tempo para preparar as aulas.</p>
-                <p>Sua missão é uma só: ajudar cada professor a levar o amor de Deus às crianças com leveza, organização e propósito.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Carousel -->
-    <section>
-        <h2>Quem compra recomenda</h2>
-        <div class="carousel">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; align-items: start;">
-<div class="carousel-image"><img src="/depoimento-leandra.webp" alt="Depoimento da cliente Leandra pelo WhatsApp" loading="lazy"></div>
-<div class="carousel-image"><img src="/depoimento-paula.webp" alt="Depoimento da cliente Paula pelo WhatsApp" loading="lazy"></div>
-</div>
-            <button class="cta-button" onclick="document.getElementById('planos').scrollIntoView({behavior: 'smooth'}); return false;" style="display: block; margin: 40px auto 0;">Acessar agora</button>
-        </div>
-    </section>
-
     <!-- FAQ -->
     <section class="alt-bg">
         <h2>Dúvidas frequentes</h2>
         <div class="faq-container">
+            <details >
+                <summary>Meu filho só quer saber de celular e internet. Será que ele vai prestar atenção?</summary>
+                <p>Sim! As atividades foram desenhadas para serem altamente visuais e interativas. O segredo é não brigar. Coloque a atividade impressa e os lápis na mesa, comece você a pintar e deixe a curiosidade natural tirar a atenção dele da tela para o papel.</p>
+            </details>
+            <details >
+                <summary>Não tenho impressora em casa, e agora?</summary>
+                <p>Isso não é um problema. O material é enviado em formato PDF padrão. Você pode baixar no seu celular e imprimir na papelaria ou gráfica mais próxima por centavos. Muitos pais imprimem o pacote de um mês inteiro de uma só vez!</p>
+            </details>
+            <details >
+                <summary>Eu chego muito cansado(a). Dá muito trabalho para recortar, montar e preparar a aula?</summary>
+                <p>Zero trabalho. Esse foi o motivo de termos criado as 52 Lições. Não há necessidade de planejamento, compra de materiais extras ou horas de preparação. É só imprimir e aplicar na hora. O atalho perfeito para quem não tem tempo.</p>
+            </details>
             <details>
                 <summary>Como vou receber o material?</summary>
                 <p>Logo após a confirmação do pagamento, você recebe o acesso no seu e-mail para baixar todo o material.</p>
             </details>
             <details>
                 <summary>O material é físico ou digital?</summary>
-                <p>É 100% digital em PDF. Você baixa no seu computador e pode imprimir quantas vezes quiser.</p>
+                <p>É 100% digital em PDF. Você baixa no celular ou no computador e pode imprimir quantas vezes quiser.</p>
+            </details>
+            <details >
+                <summary>Preciso de um computador para baixar?</summary>
+                <p>Não! Você pode baixar o material direto no seu celular e enviar para uma gráfica ou impressora, ou apenas ler as histórias pelo celular enquanto a criança pinta o papel impresso na mesa.</p>
             </details>
             <details>
                 <summary>Posso imprimir quantas vezes quiser?</summary>
@@ -1227,8 +1218,8 @@
                 <p>Não! O material é completo e pronto para usar, ideal para quem está começando ou tem pouca experiência.</p>
             </details>
             <details>
-                <summary>Posso usar no celular, tablet ou computador?</summary>
-                <p>Sim! Os arquivos PDF funcionam em todos os dispositivos. Você pode visualizar e imprimir quando quiser.</p>
+                <summary>Serve para qualquer igreja ou denominação?</summary>
+                <p>Sim. As lições são baseadas nas histórias da Bíblia e podem ser usadas em qualquer igreja, em casa ou em grupos de estudo bíblico.</p>
             </details>
             <details>
                 <summary>O acesso é vitalício?</summary>
@@ -1238,13 +1229,31 @@
                 <summary>Tem garantia?</summary>
                 <p>Sim! Garantia incondicional de 7 dias. Se não gostar, devolvemos seu dinheiro, sem fazer perguntas.</p>
             </details>
+            <details>
+                <summary>O pagamento é seguro?</summary>
+                <p>Sim. O pagamento é processado por uma plataforma de pagamento segura, com Pix ou cartão. Seus dados ficam protegidos.</p>
+            </details>
         </div>
-        <button class="cta-button" onclick="document.getElementById('planos').scrollIntoView({behavior: 'smooth'}); return false;" style="display: block; margin: 40px auto 0;">Acessar agora</button>
+    </section>
+
+    <!-- NOVO · CTA final -->
+    <section class="dark-section cta-final">
+        <h2>O próximo domingo já pode ser diferente</h2>
+        <p>Pare de improvisar e de perder horas procurando ideias. Tenha 52 aulas prontas e veja as crianças prestando atenção na Palavra de Deus.</p>
+        <a href="#planos" class="cta-pulo" style="display:inline-block;margin-top:28px;background:linear-gradient(180deg,#ffa31a,#ea7412);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.3);font-weight:800;font-size:clamp(16px,4.5vw,20px);text-transform:uppercase;text-decoration:none;padding:18px 32px;border-radius:12px;max-width:100%;">Tirei minhas dúvidas, quero as lições!</a>
+        <div class="selos">
+            <span class="selo">🔒 Compra 100% segura</span>
+            <span class="selo">⚡ Acesso imediato</span>
+            <span class="selo">🛡️ Garantia de 7 dias</span>
+            <span class="selo">♾️ Acesso vitalício</span>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer >
         <p>&copy; 2026 Método Profa. Rayssa Andrade. Todos os direitos reservados.</p>
+        <p style="margin-top:10px;"><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · <a href="#">Contato</a></p>
+        <p class="aviso">Este site não faz parte do Facebook ou da Meta Platforms, Inc. Os resultados podem variar de pessoa para pessoa.</p>
     </footer>
 </body>
 </html>
