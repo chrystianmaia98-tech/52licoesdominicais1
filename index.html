@@ -1147,6 +1147,10 @@
         .carrossel-depo .car-seta { top: 46%; }
         .carrossel.sem-rolagem .car-seta, .carrossel.sem-rolagem .car-dots, .carrossel.sem-rolagem .car-dica { display: none; }
 
+        /* Carrossel automático contínuo */
+        .carrossel.auto .car-trilho { scroll-snap-type: none; scroll-behavior: auto; }
+        .carrossel.auto .car-seta[disabled] { opacity: 1; cursor: pointer; }
+
         /* Menos espaço entre bônus e depoimentos (mesmo fundo) */
         section.bonus-section { padding-bottom: 16px !important; }
         section.depo-section { padding-top: 32px !important; }
@@ -1519,49 +1523,90 @@
         <p class="aviso">Este site não faz parte do Facebook ou da Meta Platforms, Inc. Os resultados podem variar de pessoa para pessoa.</p>
     </footer>
 
-    <!-- Carrosséis: setas, bolinhas e passagem automática -->
+    <!-- Carrosséis: imagens passando sozinhas sem parar (loop infinito) -->
     <script>
     (function () {
         var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var VELOCIDADE = 45; // pixels por segundo
+
         document.querySelectorAll('.carrossel').forEach(function (box) {
             var trilho = box.querySelector('.car-trilho');
-            var itens = box.querySelectorAll('.car-item');
+            var originais = Array.prototype.slice.call(box.querySelectorAll('.car-item'));
             var dots = box.querySelector('.car-dots');
             var prev = box.querySelector('.car-prev');
             var next = box.querySelector('.car-next');
-            if (!trilho || !itens.length) return;
-            itens.forEach(function () { dots.appendChild(document.createElement('span')); });
-            function passo() { return itens[0].getBoundingClientRect().width + (parseFloat(getComputedStyle(trilho).columnGap) || 0); }
-            function maximo() { return trilho.scrollWidth - trilho.clientWidth - 2; }
-            function update() {
-                var i = Math.round(trilho.scrollLeft / passo());
-                if (trilho.scrollLeft >= maximo()) i = itens.length - 1;
-                dots.querySelectorAll('span').forEach(function (d, k) { d.classList.toggle('ativo', k === i); });
-                prev.disabled = trilho.scrollLeft <= 2;
-                next.disabled = trilho.scrollLeft >= maximo();
-                box.classList.toggle('sem-rolagem', maximo() <= 0);
-            }
-            var timer = null, parado = false;
-            function parar() { parado = true; clearInterval(timer); timer = null; }
-            prev.addEventListener('click', function () { parar(); trilho.scrollBy({ left: -passo(), behavior: 'smooth' }); });
-            next.addEventListener('click', function () { parar(); trilho.scrollBy({ left: passo(), behavior: 'smooth' }); });
-            trilho.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
-            window.addEventListener('resize', update);
-            update();
+            if (!trilho || !originais.length) return;
+            box.classList.add('auto');
 
-            // Passa sozinho a cada 3,5 segundos enquanto está na tela; para quando a pessoa mexe
-            ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { trilho.addEventListener(ev, parar, { passive: true }); });
-            if (reduzir || !('IntersectionObserver' in window)) return;
-            new IntersectionObserver(function (e) {
-                if (parado) return;
-                if (e[0].isIntersecting && !timer) {
-                    timer = setInterval(function () {
-                        if (maximo() <= 0) return;
-                        if (trilho.scrollLeft >= maximo()) trilho.scrollTo({ left: 0, behavior: 'smooth' });
-                        else trilho.scrollBy({ left: passo(), behavior: 'smooth' });
-                    }, 3500);
-                } else if (!e[0].isIntersecting && timer) { clearInterval(timer); timer = null; }
-            }, { threshold: 0.5 }).observe(trilho);
+            // Duplica as imagens para o loop não ter fim
+            originais.forEach(function (item) {
+                var copia = item.cloneNode(true);
+                copia.setAttribute('aria-hidden', 'true');
+                copia.querySelectorAll('img').forEach(function (img) { img.alt = ''; img.loading = 'eager'; });
+                trilho.appendChild(copia);
+            });
+            originais.forEach(function () { dots.appendChild(document.createElement('span')); });
+
+            function gap() { return parseFloat(getComputedStyle(trilho).columnGap) || 0; }
+            function passo() { return originais[0].getBoundingClientRect().width + gap(); }
+            function larguraDoGrupo() { return passo() * originais.length; }
+            var pos = 0, pausado = false, visivel = false, ultimo = null, retomar = null;
+
+            function normalizar() {
+                var w = larguraDoGrupo();
+                if (w <= 0) return;
+                while (pos >= w) pos -= w;
+                while (pos < 0) pos += w;
+            }
+            function aplicar() { trilho.scrollLeft = pos; }
+            function bolinhas() {
+                var i = Math.round(pos / passo()) % originais.length;
+                dots.querySelectorAll('span').forEach(function (d, k) { d.classList.toggle('ativo', k === i); });
+            }
+            function quadro(t) {
+                if (ultimo === null) ultimo = t;
+                var dt = Math.min((t - ultimo) / 1000, 0.1);
+                ultimo = t;
+                if (!pausado && visivel && !reduzir) {
+                    pos += VELOCIDADE * dt;
+                    normalizar();
+                    aplicar();
+                }
+                bolinhas();
+                requestAnimationFrame(quadro);
+            }
+            function pausar() { pausado = true; clearTimeout(retomar); }
+            function voltar(ms) {
+                clearTimeout(retomar);
+                retomar = setTimeout(function () { pos = trilho.scrollLeft; normalizar(); aplicar(); pausado = false; }, ms);
+            }
+
+            // Pausa enquanto a pessoa encosta/arrasta e volta sozinho depois
+            trilho.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pausar(); });
+            trilho.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') voltar(300); });
+            trilho.addEventListener('touchstart', pausar, { passive: true });
+            trilho.addEventListener('touchend', function () { voltar(2000); }, { passive: true });
+            trilho.addEventListener('wheel', function () { pausar(); voltar(1500); }, { passive: true });
+            trilho.addEventListener('scroll', function () {
+                if (!pausado) return;
+                var w = larguraDoGrupo();
+                if (trilho.scrollLeft >= w) trilho.scrollLeft -= w;
+            }, { passive: true });
+
+            function andar(dir) {
+                pausar();
+                pos = trilho.scrollLeft + dir * passo();
+                normalizar();
+                trilho.scrollTo({ left: pos, behavior: 'smooth' });
+                voltar(2500);
+            }
+            prev.addEventListener('click', function () { andar(-1); });
+            next.addEventListener('click', function () { andar(1); });
+
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (e) { visivel = e[0].isIntersecting; }, { threshold: 0.1 }).observe(trilho);
+            } else { visivel = true; }
+            requestAnimationFrame(quadro);
         });
     })();
     </script>
