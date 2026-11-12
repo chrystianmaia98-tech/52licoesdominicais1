@@ -1917,6 +1917,11 @@
             pop.hidden = false;
             document.body.style.overflow = 'hidden';
             pop.querySelector('.pop-sim').focus();
+            // Registra o IC no UTMify: simula o clique no botão do Arsenal sem sair da página
+            try {
+                var gatilho = document.querySelector('a.cta-verde[href*="OdN2mO"]');
+                if (gatilho) { var bloq = function (ev) { ev.preventDefault(); }; window.addEventListener('click', bloq); gatilho.click(); window.removeEventListener('click', bloq); }
+            } catch (err) {}
         }
         function fechar() {
             pop.hidden = true;
