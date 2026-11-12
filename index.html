@@ -1925,7 +1925,9 @@
         }
         var POPUP_ATIVO = true; // true = mostra a oferta de R$ 14,90 ao clicar no Pacote Essencial
         // O popup escuta no window (depois do UTMify), para o IC ser registrado antes de abrir a oferta
-        if (POPUP_ATIVO) window.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a.cta-essencial'); if (!a) return; abrir({ preventDefault: function () { e.preventDefault(); }, currentTarget: a }); });
+        function ligarPopup() { window.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a.cta-essencial'); if (!a) return; abrir({ preventDefault: function () { e.preventDefault(); }, currentTarget: a }); }); }
+        // Espera o UTMify carregar para o popup escutar DEPOIS dele (assim o IC é registrado)
+        if (POPUP_ATIVO) { var tentativas = 0; (function esperar() { if (window.__utmifyTrackers || window.pixelId || tentativas++ > 40) { setTimeout(ligarPopup, 300); } else { setTimeout(esperar, 150); } })(); }
         pop.querySelector('.pop-fechar').addEventListener('click', fechar);
         pop.addEventListener('click', function (e) { if (e.target === pop) fechar(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) fechar(); });
