@@ -1924,7 +1924,8 @@
             if (ultimoFoco) ultimoFoco.focus();
         }
         var POPUP_ATIVO = true; // true = mostra a oferta de R$ 14,90 ao clicar no Pacote Essencial
-        if (POPUP_ATIVO) document.querySelectorAll('a.cta-essencial').forEach(function (a) { a.addEventListener('click', abrir); });
+        // O popup escuta no window (depois do UTMify), para o IC ser registrado antes de abrir a oferta
+        if (POPUP_ATIVO) window.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a.cta-essencial'); if (!a) return; abrir({ preventDefault: function () { e.preventDefault(); }, currentTarget: a }); });
         pop.querySelector('.pop-fechar').addEventListener('click', fechar);
         pop.addEventListener('click', function (e) { if (e.target === pop) fechar(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) fechar(); });
